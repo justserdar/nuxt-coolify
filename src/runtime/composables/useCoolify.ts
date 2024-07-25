@@ -51,8 +51,8 @@ export function useCoolify() {
   }
 
   const getHealthcheck = () => useApi('/authorisation/healthcheck')
-  const enableAuthorisation = (data: string) => useApi('/authorisation/enable', { method: 'POST', body: data })
-  const disableAuthorisation = () => useApi('/authorisation/disable', { method: 'POST' })
+  const enableAPI = (data: string) => useApi('/authorisation/enable', { method: 'GET', body: data })
+  const disableAPI = () => useApi('/authorisation/disable', { method: 'GET' })
   const getVersion = () => useApi('/authorisation/version')
   const createResource = (data: string) => useApi('/resources/create', { method: 'POST', body: data })
   const listResources = () => useApi('/resources/list')
@@ -61,8 +61,8 @@ export function useCoolify() {
 
   return {
     getHealthcheck,
-    enableAuthorisation,
-    disableAuthorisation,
+    enableAPI,
+    disableAPI,
     getVersion,
     createResource,
     listResources,
