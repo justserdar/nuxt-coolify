@@ -1,6 +1,6 @@
 {
   "name": "nuxt-coolify",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Integrate Nuxt With Coolify to simplify your deployments.",
   "author": "Serdar Yerdelen",
   "repository": "@justserdar/nuxt-coolify",
