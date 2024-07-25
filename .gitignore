@@ -54,3 +54,24 @@ coverage
 Network Trash Folder
 Temporary Items
 .apdisk
+
+
+# Vitepress
+docs/coverage
+docs/src/client/shared.ts
+docs/src/node/shared.ts
+docs/*.log
+docs/*.tgz
+docs/.DS_Store
+docs/.idea/*
+docs/.temp/*
+docs/.vite_opt_cache/*
+docs/.vscode
+docs/dist/*
+docs/.vitepress/cache/**
+docs/temp
+docs/examples-temp
+docs/node_modules
+docs/pnpm-global
+docs/TODOs.md
+docs/*.timestamp-*.mjs

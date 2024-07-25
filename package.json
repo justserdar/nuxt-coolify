@@ -1,6 +1,6 @@
 {
   "name": "nuxt-coolify",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "Integrate Nuxt With Coolify to simplify your deployments.",
   "author": "Serdar Yerdelen",
   "repository": "@justserdar/nuxt-coolify",
@@ -24,10 +24,15 @@
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
     "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
-    "lint": "eslint .",
+    "lint": "eslint playground",
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
+    "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit",
+    "docs:dev": "vitepress dev docs --host",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs --host",
+    "docs:preview": "vitepress preview docs --host",
+    "docs:contributors": "esno scripts/update-contributors.ts"
   },
   "dependencies": {
     "@nuxt/kit": "^3.12.4"
