@@ -22,7 +22,6 @@ export function useCoolify() {
     const data = ref(null)
     const pending = ref(false)
     const error = ref(null)
-    console.log(url)
 
     const fetchData = async () => {
       pending.value = true
