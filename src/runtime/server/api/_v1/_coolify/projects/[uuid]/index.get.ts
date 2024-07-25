@@ -1,7 +1,8 @@
-import { defineEventHandler, send } from 'h3'
+import { defineEventHandler, send, getRouterParams } from 'h3'
 
 export default defineEventHandler(async (event) => {
-  const response = await $fetch(`${process.env.COOLIFY_BASE_API_URL}/api/v1/projects`, {
+  const params = await getRouterParams(event)
+  const response = await $fetch(`${process.env.COOLIFY_BASE_API_URL}/api/v1/projects/${params.uuid}`, {
     method: 'GET',
     headers: {
       'content-type': 'application/json',

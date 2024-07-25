@@ -14,12 +14,10 @@ To reach the internal Coolify API endpoints within the module, use the useCoolif
 This composables returns multiple helpers that automates all the API calls via Nitro:
 
 ```js
-import { useCoolify } from 'nuxt-coolify'
-
 const { 
   getHealthcheck,
-  enableAuthorisation,
-  disableAuthorisation,
+  enableAPI,
+  disableAPI,
   getVersion
 } = useCoolify()
 ```
@@ -28,13 +26,13 @@ const {
 
 ### `getHealthcheck`
 
-Boolean indicating whether the audio is currently playing. This allows you to control playback states within the application.
+Helper function that returns the healthcheck status.
 
-### `enableAuthorisation`
+### `enableAPI`
 
-Function to start playing the loaded audio file. This facilitates user interaction with audio content, such as play buttons.
+Helper function that returns the healthcheck status.
 
-### `disableAuthorisation`
+### `disableAPI`
 
 Function to pause the currently playing audio. This is useful for user controls that require stopping the audio temporarily.
 

@@ -42,6 +42,32 @@ export default defineNuxtModule<ModuleOptions>({
           handler: `${runtimeRoute}/authorisation/version.get`,
         },
       },
+      projects: {
+        create: {
+          route: `${route}/projects/create`,
+          handler: `${runtimeRoute}/projects/create.post`,
+        },
+        list: {
+          route: `${route}/projects/list`,
+          handler: `${runtimeRoute}/projects/list.get`,
+        },
+        get: {
+          route: `${route}/projects/:uuid`,
+          handler: `${runtimeRoute}/projects/[uuid]/index.get`,
+        },
+        delete: {
+          route: `${route}/projects/:uuid/delete`,
+          handler: `${runtimeRoute}/projects/[uuid]/delete.get`,
+        },
+        update: {
+          route: `${route}/projects/:uuid/update`,
+          handler: `${runtimeRoute}/projects/[uuid]/update.post`,
+        },
+        project_environment: {
+          route: `${route}/projects/:uuid/:environment_name`,
+          handler: `${runtimeRoute}/projects/[uuid]/[environment_name]/index.get`,
+        },
+      },
       // teams: {
       //   create: {
       //     route: `${route}/teams/create`,
@@ -58,24 +84,6 @@ export default defineNuxtModule<ModuleOptions>({
       //   disable: {
       //     route: `${route}/teams/disable`,
       //     handler: `${runtimeRoute}/teams/disable.get`,
-      //   },
-      // },
-      // projects: {
-      //   create: {
-      //     route: `${route}/projects/create`,
-      //     handler: `${runtimeRoute}/projects/create.post`,
-      //   },
-      //   list: {
-      //     route: `${route}/projects/list`,
-      //     handler: `${runtimeRoute}/projects/list.get`,
-      //   },
-      //   delete: {
-      //     route: `${route}/projects/delete`,
-      //     handler: `${runtimeRoute}/projects/delete.get`,
-      //   },
-      //   disable: {
-      //     route: `${route}/projects/disable`,
-      //     handler: `${runtimeRoute}/projects/disable.get`,
       //   },
       // },
       // resources: {

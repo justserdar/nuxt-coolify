@@ -24,7 +24,7 @@ yarn add nuxt-coolify
 :::
 
 ::: info
-The module is currently in alpha and only available over NPM.
+The module is currently in alpha and only available over NPM/PNPM/Yarn.
 :::
 
 
@@ -36,7 +36,7 @@ The module is currently in alpha and only available over NPM.
 export default defineNuxtConfig({
   modules: ['nuxt-coolify'],
   coolify: {
-    // options
+    // options currently being integrated
   },
 })
 
@@ -48,16 +48,13 @@ export default defineNuxtConfig({
 COOLIFY_BASE_API_URL=<your-coolify-url>
 COOLIFY_API_TOKEN=<your-coolify-api-token>
 ```
+Note: To get your Coolify API token, go to the API section in your Coolify Dashboard and create one there.
 
-To get your Coolify API token, go to the API section in your Coolify Dashboard and create one there.
 
-
-Then you can use it directly in your pages and components by importing the composable like so:
+You can directly import 'useCoolify()', Nuxt automagicly imports it:
 
 ```vue
-<script setup>
-import { useCoolify } from 'nuxt-coolify'
-
+<script setup lang="ts">
 const { getVersion } = useCoolify()
 const { data, pending, error } = await getVersion()
 

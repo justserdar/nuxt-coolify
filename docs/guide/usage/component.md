@@ -4,7 +4,7 @@ outline: deep
 
 # Component Usage
 
-This page demonstrates  'the `useCoolify()` composable provided by 'nuxt-coolify'.
+This page demonstrates  the `useCoolify()` composable provided by nuxt-coolify.
 
 The main `useCoolify()` composable can be used to access your Coolify Instance or any other Coolify Instance you set have yourself access too.
 
