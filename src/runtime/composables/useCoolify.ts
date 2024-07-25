@@ -4,7 +4,7 @@ import { ofetch } from 'ofetch'
 
 export function useCoolify() {
   if (!process.env.COOLIFY_BASE_API_URL) {
-    console.warn('COOLIFY_BASE_API_URL is not defined. Please define BASE_API_URL in your environment variables.')
+    console.warn('COOLIFY_BASE_API_URL is not defined. Please define COOLIFY_BASE_API_URL in your environment variables.')
   }
   if (!process.env.COOLIFY_API_TOKEN) {
     console.warn('COOLIFY_API_TOKEN is not defined. Please define BASE_API_TOKEN in your environment variables.')
