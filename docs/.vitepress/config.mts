@@ -1,0 +1,40 @@
+import { defineConfig } from 'vitepress'
+
+// https://vitepress.dev/reference/site-config
+export default defineConfig({
+  title: 'Nuxt Coolify',
+  description: 'Integrate Nuxt With Coolify to simplify your deployments.',
+  themeConfig: {
+    // https://vitepress.dev/reference/default-theme-config
+    nav: [
+      { text: 'Home', link: '/' },
+      { text: 'Get started', link: '/guide/getting-started' },
+      { text: 'Blog', link: '/blog/announcement' },
+    ],
+
+    sidebar: [
+      {
+        text: 'Getting Started',
+        items: [
+          { text: 'Installation', link: '/guide/getting-started' },
+        ],
+      },
+      {
+        text: 'Usage',
+        items: [
+          { text: 'Component Example', link: '/guide/usage/component' },
+        ],
+      },
+      {
+        text: 'API',
+        items: [
+          { text: 'useCoolify()', link: '/guide/api/composables/useCoolify.md' },
+        ],
+      },
+    ],
+
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/justserdar/nuxt-coolify' },
+    ],
+  },
+})
