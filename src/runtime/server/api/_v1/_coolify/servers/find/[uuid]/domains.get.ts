@@ -7,6 +7,6 @@ export default defineEventHandler(async (event) => {
     method: 'get',
     headers: { 'Authorization': `Bearer ${process.env.COOLIFY_API_TOKEN}`, 'content-type': 'application/json' },
   })
-  
+
   return send(event, JSON.stringify(response))
 })

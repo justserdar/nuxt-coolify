@@ -21,11 +21,10 @@ export function useCoolify() {
   const useApi = (url: string, options = {}) => {
     const data = ref(null)
     const pending = ref(false)
-    const error = ref(null)
+    const error = ref('')
 
     const fetchData = async () => {
       pending.value = true
-      error.value = null
       try {
         const response = await api(url, {
           ...options,
@@ -36,8 +35,10 @@ export function useCoolify() {
         })
         data.value = response
       }
-      catch (err) {
-        error.value = err
+      catch (err: unknown) {
+        if (err instanceof Error) {
+          return error.value = err.message
+        }
       }
       finally {
         pending.value = false
@@ -50,13 +51,13 @@ export function useCoolify() {
   }
 
   const getHealthcheck = () => useApi('/authorisation/healthcheck')
-  const enableAuthorisation = data => useApi('/authorisation/enable', { method: 'POST', body: data })
+  const enableAuthorisation = (data: string) => useApi('/authorisation/enable', { method: 'POST', body: data })
   const disableAuthorisation = () => useApi('/authorisation/disable', { method: 'POST' })
   const getVersion = () => useApi('/authorisation/version')
-  const createResource = data => useApi('/resources/create', { method: 'POST', body: data })
+  const createResource = (data: string) => useApi('/resources/create', { method: 'POST', body: data })
   const listResources = () => useApi('/resources/list')
-  const deleteResource = resourceId => useApi(`/resources/delete/${resourceId}`, { method: 'DELETE' })
-  const disableResource = resourceId => useApi(`/resources/disable/${resourceId}`, { method: 'POST' })
+  const deleteResource = (resourceId: string) => useApi(`/resources/delete/${resourceId}`, { method: 'DELETE' })
+  const disableResource = (resourceId: string) => useApi(`/resources/disable/${resourceId}`, { method: 'POST' })
 
   return {
     getHealthcheck,

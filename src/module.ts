@@ -1,4 +1,4 @@
-import { emitWarning } from 'node:process'
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   defineNuxtModule,
   createResolver,
