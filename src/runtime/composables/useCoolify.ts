@@ -67,6 +67,9 @@ export function useCoolify() {
   const getServerResources = (uuid: string) => useApi(`/servers/${uuid}/resources`, { method: 'GET' })
   const getServerDomains = (uuid: string) => useApi(`/servers/${uuid}/domains`, { method: 'GET' })
   const validateServer = (uuid: string) => useApi(`/servers/${uuid}/validate`, { method: 'GET' })
+  const listDeployments = () => useApi('/deployments/list')
+  const getDeployment = (uuid: string) => useApi(`/deployments/${uuid}`, { method: 'GET' })
+  const deploy = (data: { tag: string, uuid: string, force: boolean }) => useApi('/deployments/create', { method: 'POST', body: data })
 
   return {
     getHealthcheck,
@@ -85,5 +88,8 @@ export function useCoolify() {
     getServerResources,
     getServerDomains,
     validateServer,
+    listDeployments,
+    getDeployment,
+    deploy,
   }
 }

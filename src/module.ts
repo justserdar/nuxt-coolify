@@ -102,6 +102,22 @@ export default defineNuxtModule<ModuleOptions>({
           handler: `${runtimeRoute}/servers/[uuid]/validate.get`,
         },
       },
+      deploy: {
+        create: {
+          route: `${route}/deploy`,
+          handler: `${runtimeRoute}/deploy/index.post`,
+        },
+      },
+      deployments: {
+        get: {
+          route: `${route}/deployments/:uuid`,
+          handler: `${runtimeRoute}/deployments/index.get`,
+        },
+        list: {
+          route: `${route}/deployments`,
+          handler: `${runtimeRoute}/deployments/list.get`,
+        },
+      },
       // teams: {
       //   create: {
       //     route: `${route}/teams/create`,
