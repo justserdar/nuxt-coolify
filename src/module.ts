@@ -68,6 +68,40 @@ export default defineNuxtModule<ModuleOptions>({
           handler: `${runtimeRoute}/projects/[uuid]/[environment_name]/index.get`,
         },
       },
+      servers: {
+        create: {
+          route: `${route}/servers/create`,
+          handler: `${runtimeRoute}/servers/create.post`,
+        },
+        list: {
+          route: `${route}/servers/list`,
+          handler: `${runtimeRoute}/servers/list.get`,
+        },
+        get: {
+          route: `${route}/servers/:uuid`,
+          handler: `${runtimeRoute}/servers/[uuid]/index.get`,
+        },
+        delete: {
+          route: `${route}/servers/:uuid/delete`,
+          handler: `${runtimeRoute}/projects/[uuid]/delete.get`,
+        },
+        update: {
+          route: `${route}/servers/:uuid/update`,
+          handler: `${runtimeRoute}/servers/[uuid]/update.post`,
+        },
+        domains: {
+          route: `${route}/servers/:uuid/domains`,
+          handler: `${runtimeRoute}/servers/[uuid]/domains.get`,
+        },
+        resources: {
+          route: `${route}/servers/:uuid/resources`,
+          handler: `${runtimeRoute}/servers/[uuid]/resources.get`,
+        },
+        validate: {
+          route: `${route}/servers/:uuid/validate`,
+          handler: `${runtimeRoute}/servers/[uuid]/validate.get`,
+        },
+      },
       // teams: {
       //   create: {
       //     route: `${route}/teams/create`,

@@ -27,10 +27,11 @@ export function useCoolify() {
       pending.value = true
       try {
         const response = await api(url, {
-          ...options,
+          ...options, // Merge with any provided headers
           headers: {
             'Content-Type': 'application/json', // Set default content type header
-            'Accept': 'application/json', // Ensure the response is expected to be JSON // Merge with any provided headers
+            'Accept': 'application/json', // Ensure the response is expected to be JSON
+            // We do not send any authorization headers here, as we are using the API token securely from within Nitro.
           },
         })
         data.value = response
@@ -58,6 +59,14 @@ export function useCoolify() {
   const listResources = () => useApi('/resources/list')
   const deleteResource = (resourceId: string) => useApi(`/resources/delete/${resourceId}`, { method: 'DELETE' })
   const disableResource = (resourceId: string) => useApi(`/resources/disable/${resourceId}`, { method: 'POST' })
+  const listServers = () => useApi('/servers/list')
+  const getServer = (uuid: string) => useApi(`/servers/${uuid}`, { method: 'GET' })
+  const createServer = (data: string) => useApi('/servers/create', { method: 'POST', body: data })
+  const updateServer = (uuid: string, data: string) => useApi(`/servers/${uuid}`, { method: 'POST', body: data })
+  const deleteServer = (uuid: string) => useApi(`/servers/${uuid}`, { method: 'DELETE' })
+  const getServerResources = (uuid: string) => useApi(`/servers/${uuid}/resources`, { method: 'GET' })
+  const getServerDomains = (uuid: string) => useApi(`/servers/${uuid}/domains`, { method: 'GET' })
+  const validateServer = (uuid: string) => useApi(`/servers/${uuid}/validate`, { method: 'GET' })
 
   return {
     getHealthcheck,
@@ -68,5 +77,13 @@ export function useCoolify() {
     listResources,
     deleteResource,
     disableResource,
+    getServer,
+    listServers,
+    createServer,
+    updateServer,
+    deleteServer,
+    getServerResources,
+    getServerDomains,
+    validateServer,
   }
 }
