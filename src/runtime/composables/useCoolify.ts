@@ -70,6 +70,13 @@ export function useCoolify() {
   const listDeployments = () => useApi('/deployments/list')
   const getDeployment = (uuid: string) => useApi(`/deployments/${uuid}`, { method: 'GET' })
   const deploy = (data: { tag: string, uuid: string, force: boolean }) => useApi('/deployments/create', { method: 'POST', body: data })
+  const listServices = () => useApi('/services/list')
+  const getService = (uuid: string) => useApi(`/services/${uuid}`, { method: 'GET' })
+  const createService = (data: { type: string, name: string, description: string, project_uuid: string, environment_name: string, server_uuid: string, destination_uuid: string, instant_deploy: boolean }) => useApi('/services/create', { method: 'POST', body: data })
+  const deleteService = (uuid: string) => useApi(`/services/${uuid}`, { method: 'GET' })
+  const startService = (uuid: string) => useApi(`/services/${uuid}/start`, { method: 'GET' })
+  const stopService = (uuid: string) => useApi(`/services/${uuid}/stop`, { method: 'GET' })
+  const restartService = (uuid: string) => useApi(`/services/${uuid}/restart`, { method: 'GET' })
 
   return {
     getHealthcheck,
@@ -91,5 +98,12 @@ export function useCoolify() {
     listDeployments,
     getDeployment,
     deploy,
+    listServices,
+    getService,
+    createService,
+    deleteService,
+    startService,
+    stopService,
+    restartService,
   }
 }

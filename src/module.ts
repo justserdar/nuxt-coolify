@@ -111,11 +111,41 @@ export default defineNuxtModule<ModuleOptions>({
       deployments: {
         get: {
           route: `${route}/deployments/:uuid`,
-          handler: `${runtimeRoute}/deployments/index.get`,
+          handler: `${runtimeRoute}/deployments/[uuid]/index.get`,
         },
         list: {
           route: `${route}/deployments`,
           handler: `${runtimeRoute}/deployments/list.get`,
+        },
+      },
+      services: {
+        create: {
+          route: `${route}/services/create`,
+          handler: `${runtimeRoute}/servers/create.post`,
+        },
+        list: {
+          route: `${route}/services/list`,
+          handler: `${runtimeRoute}/servers/list.get`,
+        },
+        get: {
+          route: `${route}/services/:uuid`,
+          handler: `${runtimeRoute}/services/[uuid]/index.get`,
+        },
+        delete: {
+          route: `${route}/services/:uuid/delete`,
+          handler: `${runtimeRoute}/services/[uuid]/delete.get`,
+        },
+        start: {
+          route: `${route}/services/:uuid/start`,
+          handler: `${runtimeRoute}/services/[uuid]/start.get`,
+        },
+        stop: {
+          route: `${route}/services/:uuid/stop`,
+          handler: `${runtimeRoute}/services/[uuid]/stop.get`,
+        },
+        restart: {
+          route: `${route}/services/:uuid/restart`,
+          handler: `${runtimeRoute}/services/[uuid]/restart.get`,
         },
       },
       // teams: {
