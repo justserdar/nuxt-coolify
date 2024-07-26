@@ -1,6 +1,20 @@
 # Changelog
 
 
+## v0.0.6
+
+[compare changes](https://undefined/undefined/compare/v0.0.5...v0.0.6)
+
+### 🚀 Enhancements
+
+- Docs update (3590eb2)
+- Refactor to use useRuntimeConfig, included runtime object in playground nuxt.config (57432f9)
+- Intoduced build config (1f17b4c)
+
+### ❤️ Contributors
+
+- H+ ([@justserdar](http://github.com/justserdar))
+
 ## v0.0.5
 
 [compare changes](https://undefined/undefined/compare/v0.0.4...v0.0.5)
