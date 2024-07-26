@@ -1,11 +1,12 @@
 import { defineEventHandler, send } from 'h3'
+import { useRuntimeConfig } from '#imports'
 
 export default defineEventHandler(async (event) => {
-  const response = await $fetch(`${process.env.COOLIFY_BASE_API_URL}/api/v1/enable`, {
+  const response = await $fetch(`${useRuntimeConfig().coolify.baseUrl}/api/v1/enable`, {
     method: 'GET',
     headers: {
       'content-type': 'application/json',
-      'Authorization': `Bearer ${process.env.COOLIFY_API_TOKEN}`,
+      'Authorization': `Bearer ${useRuntimeConfig().coolify.apiToken}`,
     },
   })
 

@@ -3,25 +3,56 @@ import {
   defineNuxtModule,
   createResolver,
   addImportsDir,
+  addImports,
   addServerHandler,
 } from '@nuxt/kit'
+import { defu } from 'defu'
+
 // Module options TypeScript interface definition
-export interface ModuleOptions {}
+export interface ModuleOptions {
+  baseUrl: string
+  apiToken: string
+  routeAlias: string
+  routeVersionAlias: string
+}
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: 'nuxt-coolify',
     configKey: 'coolify',
-    baseUrl: '',
-    apiToken: '',
   },
   defaults: {
-    baseUrl: process.env.BASE_COOLIFY_API_URL || 'not-set',
-    apiToken: process.env.BASE_COOLIFY_API_TOKEN || 'not-set',
+    baseUrl: process.env.BASE_COOLIFY_API_URL || 'missing',
+    apiToken: process.env.BASE_COOLIFY_API_TOKEN || 'missing',
+    routeAlias: '_coolify',
+    routeVersionAlias: '_v1',
   },
   async setup(_options, _nuxt) {
+    const nuxtOptions = _nuxt.options
+    const moduleOptions: ModuleOptions = defu(
+      nuxtOptions.runtimeConfig.coolify || {},
+      _options,
+    )
+
+    if (!moduleOptions.baseUrl || moduleOptions.baseUrl === 'missing') {
+      console.warn('Please provide a base URL for the coolify API.')
+    }
+
+    if (!moduleOptions.apiToken || moduleOptions.baseUrl === 'missing') {
+      console.warn('Please provide your API Token for the coolify API.')
+    }
+
+    _nuxt.hooks.hook('nitro:config', async (nitroConfig) => {
+      nitroConfig.externals = nitroConfig.externals || {}
+      nitroConfig.externals.inline = nitroConfig.externals.inline || []
+      nitroConfig.externals.inline.push(resolver.resolve('./runtime'))
+    })
+
+    nuxtOptions.runtimeConfig.coolify = moduleOptions
+
     const resolver = createResolver(import.meta.url)
-    const route = '/api/_v1/_coolify'
+    const route = `/api/${moduleOptions.routeVersionAlias}/${moduleOptions.routeAlias}`
+
     const runtimeRoute = './runtime/server/api/_v1/_coolify'
     const serverHandlers = {
       authorisation: {
@@ -167,32 +198,19 @@ export default defineNuxtModule<ModuleOptions>({
       //   },
       // },
       // resources: {
-      //   create: {
-      //     route: `${route}/resources/create`,
-      //     handler: `${runtimeRoute}/resources/create.post`,
-      //   },
       //   list: {
       //     route: `${route}/resources/list`,
       //     handler: `${runtimeRoute}/resources/list.get`,
       //   },
-      //   delete: {
-      //     route: `${route}/resources/delete`,
-      //     handler: `${runtimeRoute}/resources/delete.get`,
-      //   },
-      //   disable: {
-      //     route: `${route}/resources/disable`,
-      //     handler: `${runtimeRoute}/resources/disable.get`,
-      //   },
       // },
     }
 
-    _nuxt.hooks.hook('nitro:config', async (nitroConfig) => {
-      nitroConfig.externals = nitroConfig.externals || {}
-      nitroConfig.externals.inline = nitroConfig.externals.inline || []
-      nitroConfig.externals.inline.push(resolver.resolve('./runtime'))
-    })
-
     addImportsDir(resolver.resolve('runtime/composables')),
+    // addServerHandler({
+    //   middleware: true,
+    //   handler: resolver.resolve('./runtime/server/middleware/coolify'),
+    // })
+
     await Promise.all([
       Object.entries(serverHandlers).flatMap(([key, value]) =>
         Object.entries(value).map(([subKey, subValue]) => {

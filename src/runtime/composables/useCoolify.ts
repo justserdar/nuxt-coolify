@@ -3,13 +3,6 @@ import { ref } from 'vue'
 import { ofetch } from 'ofetch'
 
 export function useCoolify() {
-  if (!process.env.COOLIFY_BASE_API_URL) {
-    console.warn('COOLIFY_BASE_API_URL is not defined. Please define COOLIFY_BASE_API_URL in your environment variables.')
-  }
-  if (!process.env.COOLIFY_API_TOKEN) {
-    console.warn('COOLIFY_API_TOKEN is not defined. Please define BASE_API_TOKEN in your environment variables.')
-  }
-
   const api = ofetch.create({
     baseURL: '/api/_v1/_coolify',
     headers: {
@@ -55,10 +48,10 @@ export function useCoolify() {
   const enableAPI = (data: string) => useApi('/authorisation/enable', { method: 'GET', body: data })
   const disableAPI = () => useApi('/authorisation/disable', { method: 'GET' })
   const getVersion = () => useApi('/authorisation/version')
-  const createResource = (data: string) => useApi('/resources/create', { method: 'POST', body: data })
   const listResources = () => useApi('/resources/list')
-  const deleteResource = (resourceId: string) => useApi(`/resources/delete/${resourceId}`, { method: 'DELETE' })
-  const disableResource = (resourceId: string) => useApi(`/resources/disable/${resourceId}`, { method: 'POST' })
+  // const createResource = (data: string) => useApi('/resources/create', { method: 'POST', body: data })
+  // const deleteResource = (resourceId: string) => useApi(`/resources/delete/${resourceId}`, { method: 'DELETE' })
+  // const disableResource = (resourceId: string) => useApi(`/resources/disable/${resourceId}`, { method: 'POST' })
   const listServers = () => useApi('/servers/list')
   const getServer = (uuid: string) => useApi(`/servers/${uuid}`, { method: 'GET' })
   const createServer = (data: string) => useApi('/servers/create', { method: 'POST', body: data })
@@ -83,10 +76,10 @@ export function useCoolify() {
     enableAPI,
     disableAPI,
     getVersion,
-    createResource,
     listResources,
-    deleteResource,
-    disableResource,
+    // createResource,
+    // deleteResource,
+    // disableResource,
     getServer,
     listServers,
     createServer,
