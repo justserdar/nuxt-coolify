@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.0.5
+
+[compare changes](https://undefined/undefined/compare/v0.0.4...v0.0.5)
+
+### 🚀 Enhancements
+
+- Services endpoints, handlers and helper functions (6e409a4)
+- Updated vitest fixture & prepared new test (f973b6c)
+
+### ❤️ Contributors
+
+- H+ ([@justserdar](http://github.com/justserdar))
+
 ## v0.0.4
 
 [compare changes](https://undefined/undefined/compare/v0.0.3...v0.0.4)
