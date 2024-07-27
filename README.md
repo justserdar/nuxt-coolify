@@ -30,6 +30,14 @@ npx nuxi module add nuxt-coolify
 
 That's it! You can now use Nuxt Coolify in your Nuxt app ✨
 
+## Documentation
+
+Visit [nuxt-coolify.justserdar.dev](https://nuxt-coolify.justserdar.dev) to explore the documentation.
+
+## Credits
+
+- [nuxt/nuxt](https://github.com/nuxt/nuxt)
+- [coollabsio/coolify](https://github.com/coollabsio/coolify)
 
 ## Contribution
 

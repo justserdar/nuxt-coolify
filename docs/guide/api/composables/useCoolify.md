@@ -8,6 +8,8 @@ icon: simple-icons:sqlite
 
 <!-- :read-more{to=""} -->
 
+[Generating an API token](https://coolify.io/docs/api-reference/authorization)
+
 ## Usage
 
 To reach the internal Coolify API endpoints within the module, use the useCoolify composable. 
