@@ -35,8 +35,22 @@ The module is currently in alpha and only available over NPM/PNPM/Yarn.
 ```ts
 export default defineNuxtConfig({
   modules: ['nuxt-coolify'],
-  coolify: {
-    // options currently being integrated
+  runtimeConfig: {
+    coolify: {
+      instances: {
+        default: {
+          baseUrl: process.env.COOLIFY_BASE_API_URL,
+          apiToken: process.env.COOLIFY_API_TOKEN,
+        },
+      },
+      enableProviders: true,
+      providers: {
+        hetzner: {
+          baseUrl: process.env.HETZNER_BASE_API_URL,
+          apiToken: process.env.HETZNER_API_TOKEN,
+        },
+      },
+    },
   },
 })
 
