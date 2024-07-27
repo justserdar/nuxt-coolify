@@ -12,16 +12,18 @@ The Nuxt Coolify module represents a natural progression in web development tool
 
 # Core Features
 
-Bridging Web DevOps and AppDev
+Bridging Web DevOps with AppDev and making it fun while at it!
 
 - Nuxt UI Templating: Rapidly create full stack web-based applications that can communicate or manage your Coolify, Hetzner, Vultr instances/ applications over API.
 - Nitro Networking: Benefit from Nuxt's versatile backend API that actually does most of the magic.
 - Seamless Deployments: Easy setup for various deployment scenarios.
 - Bring your own CSS: The module offers the functionality so you can create the dashboard of your dreams using Vue.
 
-
 # Roadmap
 
 The majority of the module exists of Nitro event handlers/ API endpoints.
-Writing these API endpoints is quite the hassle, personally I enjoy writing controllers, handlers and API endpoints in general. But too future proof and minimize servicing these endpoints, at some I will make the jump to auto import the API's so more time can be spent on enrichting the core module feature set.
+Writing these API endpoints is quite the hassle, personally I enjoy writing controllers, handlers and API endpoints in general. But too future proof and minimize servicing these endpoints, at some 
 
+I will make the jump to autoimport the API's using OpenAPI altogether in Nitro soon, so more time can be spent on enrichting the core module feature set versus the tech debt.
+
+OpenAPI integration is definitly on the list.
