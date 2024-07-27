@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.0.7
+
+[compare changes](https://undefined/undefined/compare/v0.0.6...v0.0.7)
+
+### 🚀 Enhancements
+
+- Teams endpoints, handlers, helper functions, module overhaul, usehetzner composable, server endpoints-, handlers- and helper function, docs update (580f66e)
+- Added multi coolify instance support, curently only supports one instance called default (05e1031)
+
+### 🩹 Fixes
+
+- Renamed coolify instance key to default (4f25110)
+
+### ❤️ Contributors
+
+- H+ ([@justserdar](http://github.com/justserdar))
+
 ## v0.0.6
 
 [compare changes](https://undefined/undefined/compare/v0.0.5...v0.0.6)
