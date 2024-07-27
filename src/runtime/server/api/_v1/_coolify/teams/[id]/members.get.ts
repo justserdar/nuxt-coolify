@@ -3,9 +3,9 @@ import { useRuntimeConfig } from '#imports'
 
 export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id')
-  const response = await $fetch(`${useRuntimeConfig().coolify.baseUrl}/api/v1/teams/${id}/members`, {
+  const response = await $fetch(`${useRuntimeConfig().coolify.instances[`default`].baseUrl}/api/v1/teams/${id}/members`, {
     method: 'GET',
-    headers: { 'Authorization': `Bearer ${useRuntimeConfig().coolify.apiToken}`, 'content-type': 'application/json' },
+    headers: { 'Authorization': `Bearer ${useRuntimeConfig().coolify.instances[`default`].apiToken}`, 'content-type': 'application/json' },
   })
 
   return send(event, JSON.stringify(response))

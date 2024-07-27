@@ -12,7 +12,7 @@
         Version: {{ version }}
         <div>
           <button @click.prevent="refreshVersion">
-            Refresh Servers
+            Refresh
           </button>
         </div>
       </div>
@@ -27,18 +27,24 @@
         Error: {{ hError.message }}
       </div>
       <div v-else>
-        <div v-if="serverList && serverList.servers.length > 0">
-          <p>
+        <ul style="list-style: none;">
+          <li>
             Total Servers: {{ serverList.servers.length }}
-          </p>
+          </li>
+          <li>
+            <button @click.prevent="refreshServerList">
+              Refresh Servers
+            </button>
+          </li>
+        </ul>
+        <div v-if="serverList && serverList.servers.length > 0">
           <template
             v-for="server in serverList.servers"
             :key="server.id"
           >
-            <p>Server</p>
+            <p>{{ server.name }}</p>
             <table :ref="`${server.id}-server-table`">
               <tr>
-                <th>Name</th>
                 <th>IP</th>
                 <th>OS</th>
                 <th>Location</th>
@@ -46,7 +52,6 @@
                 <th>Actions</th>
               </tr>
               <tr>
-                <td>{{ server.name }}</td>
                 <td>{{ server.public_net.ipv4.ip }}</td>
                 <td>{{ server.image.name }}</td>
                 <td>{{ server.datacenter.location.name }}</td>
@@ -62,11 +67,6 @@
               </tr>
             </table>
           </template>
-        </div>
-        <div>
-          <button @click.prevent="refreshServerList">
-            Refresh Servers
-          </button>
         </div>
       </div>
     </div>

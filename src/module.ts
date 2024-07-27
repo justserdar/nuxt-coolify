@@ -10,8 +10,9 @@ import { defu } from 'defu'
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {
-  baseUrl: string
-  apiToken: string
+  instances: {
+    [key: string]: { apiToken: string, baseUrl: string }
+  }
   routeAlias?: string
   routeVersionAlias?: string
   enableProviders?: boolean
@@ -26,8 +27,12 @@ export default defineNuxtModule<ModuleOptions>({
     configKey: 'coolify',
   },
   defaults: {
-    baseUrl: process.env.COOLIFY_BASE_API_URL || 'missing',
-    apiToken: process.env.COOLIFY_API_TOKEN || 'missing',
+    instances: {
+      coolify: {
+        baseUrl: process.env.COOLIFY_BASE_API_URL || 'missing',
+        apiToken: process.env.COOLIFY_API_TOKEN || 'missing',
+      },
+    },
     routeAlias: '_coolify',
     routeVersionAlias: '_v1',
     enableProviders: false,
@@ -44,12 +49,13 @@ export default defineNuxtModule<ModuleOptions>({
       nuxtOptions.runtimeConfig.coolify || {},
       _options,
     )
+    nuxtOptions.runtimeConfig.coolify = moduleOptions
 
-    if (!moduleOptions.baseUrl || moduleOptions.baseUrl === 'missing') {
+    if (moduleOptions.instances['default'].baseUrl === 'missing') {
       console.warn('Please provide the base URL for your Coolify API. Ex: https://api.coolify.io')
     }
 
-    if (!moduleOptions.apiToken || moduleOptions.baseUrl === 'missing') {
+    if (moduleOptions.instances['default'].apiToken === 'missing') {
       console.warn('Please provide a valid API Token for your Coolify API.')
     }
 
@@ -58,8 +64,6 @@ export default defineNuxtModule<ModuleOptions>({
       nitroConfig.externals.inline = nitroConfig.externals.inline || []
       nitroConfig.externals.inline.push(resolver.resolve('./runtime'))
     })
-
-    nuxtOptions.runtimeConfig.coolify = moduleOptions
 
     const resolver = createResolver(import.meta.url)
     const route = `/api/${moduleOptions.routeVersionAlias}/${moduleOptions.routeAlias}`
@@ -228,7 +232,7 @@ export default defineNuxtModule<ModuleOptions>({
       const providerEntries = Object.entries(moduleOptions.providers)
 
       if (providerEntries.length === 0) {
-        throw new Error('No providers found after parsing. Please check your configuration.')
+        throw new Error('No supported providers found after parsing. Please check your configuration.')
       }
 
       let providerRoute, providerRuntimeRoute

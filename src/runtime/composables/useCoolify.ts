@@ -24,7 +24,7 @@ export function useCoolify() {
           headers: {
             'Content-Type': 'application/json', // Set default content type header
             'Accept': 'application/json', // Ensure the response is expected to be JSON
-            // We do not send any authorization headers here, as we are using the API token securely from within Nitro.
+            // We do not send any authorization headers here, as we are using the API tokens securely from within Nitro.
           },
         })
         data.value = response

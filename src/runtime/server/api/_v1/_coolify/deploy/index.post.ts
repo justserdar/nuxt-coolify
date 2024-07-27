@@ -4,9 +4,9 @@ import { useRuntimeConfig } from '#imports'
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
 
-  const response = await $fetch(`${useRuntimeConfig().coolify.baseUrl}/api/v1/deploy`, {
+  const response = await $fetch(`${useRuntimeConfig().coolify.instances[`default`].baseUrl}/api/v1/deploy`, {
     method: 'POST', // GET default, POST is also allowed
-    headers: { 'Authorization': `Bearer ${useRuntimeConfig().coolify.apiToken}`, 'content-type': 'application/json' },
+    headers: { 'Authorization': `Bearer ${useRuntimeConfig().coolify.instances[`default`].apiToken}`, 'content-type': 'application/json' },
     body: JSON.stringify(body),
   })
 
