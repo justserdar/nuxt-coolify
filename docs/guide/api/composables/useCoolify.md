@@ -13,7 +13,7 @@ icon: simple-icons:sqlite
 ## Usage
 
 To reach the internal Coolify API endpoints within the module, use the useCoolify composable. 
-This composables returns multiple helpers that automates all the API calls via Nitro:
+This composable can return multiple helpers that automate all the API calls via Nitro:
 
 ```ts
 const { 
