@@ -16,10 +16,10 @@ hero:
 
 features:
   - title: Easy Dashboard Creation
-    details: Bring in your own CSS framework or go full vanilla to manage your self-hosted Coolify servers.
+    details: Customize your dashboard with your preferred CSS framework or use vanilla CSS to manage your self-hosted Coolify servers effortlessly.
   - title: Handy Composable
-    details: use the composable to get easy access to your Coolify Instance. Work smarter, not harder!
-  - title: Deploying Self host has never been easier.
-    details: Thanks to the amazing powers of self-(or cloud) hosting Coolify.
+    details: Utilize the built in composables to easily access and manage your Coolify, Hetzner and Vultr instances, all from one application.
+  - title: Deploying has never been easier.
+    details: Enjoy the simplicity of self-hosting (or cloud hosting) with Coolify's powerful features. Seamlessly blend your DevOps and AppDev workflow.
 ---
 

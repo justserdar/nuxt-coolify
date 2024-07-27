@@ -61,6 +61,7 @@ export default defineNuxtConfig({
 ```bash
 COOLIFY_BASE_API_URL=<your-coolify-url>
 COOLIFY_API_TOKEN=<your-coolify-api-token>
+HETZNER_API_TOKEN=<your-coolify-api-token>
 ```
 Note: To get your Coolify API token, go to the API section in your Coolify Dashboard and create one there.
 
