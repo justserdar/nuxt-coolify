@@ -28,7 +28,7 @@ export default defineNuxtModule<ModuleOptions>({
   },
   defaults: {
     instances: {
-      coolify: {
+      default: {
         baseUrl: process.env.COOLIFY_BASE_API_URL || 'missing',
         apiToken: process.env.COOLIFY_API_TOKEN || 'missing',
       },
