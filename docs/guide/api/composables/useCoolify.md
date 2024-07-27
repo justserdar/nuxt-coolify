@@ -13,7 +13,7 @@ icon: simple-icons:sqlite
 To reach the internal Coolify API endpoints within the module, use the useCoolify composable. 
 This composables returns multiple helpers that automates all the API calls via Nitro:
 
-```js
+```ts
 const { 
   getHealthcheck,
   enableAPI,
@@ -47,10 +47,6 @@ const {
 
 ## Helpers
 
-### `getHealthcheck`
-
-Helper function that returns the healthcheck status.
-
 ### `enableAPI`
 
 Helper function that enables the Coolify API entirely.
@@ -58,6 +54,10 @@ Helper function that enables the Coolify API entirely.
 ### `disableAPI`
 
 Helper function that disables the Coolify API entirely.
+
+### `getHealthcheck`
+
+Helper function that returns the healthcheck status.
 
 ### `getVersion`
 

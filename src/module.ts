@@ -12,8 +12,12 @@ import { defu } from 'defu'
 export interface ModuleOptions {
   baseUrl: string
   apiToken: string
-  routeAlias: string
-  routeVersionAlias: string
+  routeAlias?: string
+  routeVersionAlias?: string
+  enableProviders?: boolean
+  providers?: {
+    [key: string]: { apiToken: string, baseUrl: string }
+  }
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -22,10 +26,17 @@ export default defineNuxtModule<ModuleOptions>({
     configKey: 'coolify',
   },
   defaults: {
-    baseUrl: process.env.BASE_COOLIFY_API_URL || 'missing',
-    apiToken: process.env.BASE_COOLIFY_API_TOKEN || 'missing',
+    baseUrl: process.env.COOLIFY_BASE_API_URL || 'missing',
+    apiToken: process.env.COOLIFY_API_TOKEN || 'missing',
     routeAlias: '_coolify',
     routeVersionAlias: '_v1',
+    enableProviders: false,
+    providers: {
+      hetzner: {
+        apiToken: process.env.HETZNER_API_TOKEN || 'missing',
+        baseUrl: process.env.HETZNER_BASE_API_URL || 'https://api.hetzner.cloud/v1',
+      },
+    },
   },
   async setup(_options, _nuxt) {
     const nuxtOptions = _nuxt.options
@@ -35,11 +46,11 @@ export default defineNuxtModule<ModuleOptions>({
     )
 
     if (!moduleOptions.baseUrl || moduleOptions.baseUrl === 'missing') {
-      console.warn('Please provide a base URL for the coolify API.')
+      console.warn('Please provide the base URL for your Coolify API. Ex: https://api.coolify.io')
     }
 
     if (!moduleOptions.apiToken || moduleOptions.baseUrl === 'missing') {
-      console.warn('Please provide your API Token for the coolify API.')
+      console.warn('Please provide a valid API Token for your Coolify API.')
     }
 
     _nuxt.hooks.hook('nitro:config', async (nitroConfig) => {
@@ -54,7 +65,7 @@ export default defineNuxtModule<ModuleOptions>({
     const route = `/api/${moduleOptions.routeVersionAlias}/${moduleOptions.routeAlias}`
 
     const runtimeRoute = './runtime/server/api/_v1/_coolify'
-    const serverHandlers = {
+    const coolifyServerHandlers = {
       authorisation: {
         healthcheck: {
           route: `${route}/authorisation/healthcheck`,
@@ -179,40 +190,143 @@ export default defineNuxtModule<ModuleOptions>({
           handler: `${runtimeRoute}/services/[uuid]/restart.get`,
         },
       },
-      // teams: {
-      //   create: {
-      //     route: `${route}/teams/create`,
-      //     handler: `${runtimeRoute}/teams/create.post`,
-      //   },
-      //   list: {
-      //     route: `${route}/teams/list`,
-      //     handler: `${runtimeRoute}/teams/list.get`,
-      //   },
-      //   delete: {
-      //     route: `${route}/teams/delete`,
-      //     handler: `${runtimeRoute}/teams/delete.get`,
-      //   },
-      //   disable: {
-      //     route: `${route}/teams/disable`,
-      //     handler: `${runtimeRoute}/teams/disable.get`,
-      //   },
-      // },
-      // resources: {
-      //   list: {
-      //     route: `${route}/resources/list`,
-      //     handler: `${runtimeRoute}/resources/list.get`,
-      //   },
-      // },
+      teams: {
+        list: {
+          route: `${route}/teams/list`,
+          handler: `${runtimeRoute}/teams/list.get`,
+        },
+        get: {
+          route: `${route}/teams/:id`,
+          handler: `${runtimeRoute}/teams/[id]/index.get`,
+        },
+        members: {
+          route: `${route}/teams/:id/members`,
+          handler: `${runtimeRoute}/teams/[id]/members.get`,
+        },
+        activeTeam: {
+          route: `${route}/teams/current`,
+          handler: `${runtimeRoute}/teams/current/index.get`,
+        },
+        activeTeamMembers: {
+          route: `${route}/teams/current/members`,
+          handler: `${runtimeRoute}/teams/current/members.get`,
+        },
+      },
+      resources: {
+        list: {
+          route: `${route}/resources/list`,
+          handler: `${runtimeRoute}/resources/list.get`,
+        },
+      },
     }
 
-    addImportsDir(resolver.resolve('runtime/composables')),
-    // addServerHandler({
-    //   middleware: true,
-    //   handler: resolver.resolve('./runtime/server/middleware/coolify'),
-    // })
+    if (moduleOptions.enableProviders) {
+      if (!moduleOptions.providers || Object.keys(moduleOptions.providers).length === 0) {
+        throw new Error('Please provide at least one provider. Note: Hetzner only at the moment.')
+      }
+
+      const providerEntries = Object.entries(moduleOptions.providers)
+
+      if (providerEntries.length === 0) {
+        throw new Error('No providers found after parsing. Please check your configuration.')
+      }
+
+      let providerRoute, providerRuntimeRoute
+
+      for (const [providerName, providerConfig] of providerEntries) {
+        if (providerName !== 'hetzner') {
+          console.warn(`Provider ${providerName} is not currently supported and will be skipped. Only Hetzner is supported at the moment.`)
+          continue
+        }
+
+        if (!providerConfig.apiToken || providerConfig.apiToken === 'missing') {
+          console.warn(`Please provide a valid API Token for the ${providerName} provider.`)
+        }
+
+        providerRoute = `/api/${moduleOptions.routeVersionAlias}/_${providerName}`
+        providerRuntimeRoute = `./runtime/server/api/${moduleOptions.routeVersionAlias}/_${providerName}`
+      }
+
+      const hetznerServerHandlers = {
+        servers: {
+          all: {
+            route: `${providerRoute}/servers`,
+            handler: `${providerRuntimeRoute}/servers/index.get`,
+          },
+          create: {
+            route: `${providerRoute}/servers/:id`,
+            handler: `${providerRuntimeRoute}/servers/create.post`,
+          },
+          delete: {
+            route: `${providerRoute}/servers/:id/delete`,
+            handler: `${providerRuntimeRoute}/servers/[id]/delete.get`,
+          },
+          get: {
+            route: `${providerRoute}/servers/:id`,
+            handler: `${providerRuntimeRoute}/servers/[id]/index.get`,
+          },
+          update: {
+            route: `${providerRoute}/servers/:id/update`,
+            handler: `${providerRuntimeRoute}/servers/[id]/update.post`,
+          },
+          metrics: {
+            route: `${providerRoute}/servers/:id/metrics`,
+            handler: `${providerRuntimeRoute}/servers/[id]/metrics.get`,
+          },
+          allServerActions: {
+            route: `${providerRoute}/servers/actions`,
+            handler: `${providerRuntimeRoute}/servers/actions/index.get`,
+          },
+          getServerAction: {
+            route: `${providerRoute}/servers/actions/:id`,
+            handler: `${providerRuntimeRoute}/servers/actions/[id]/index.get`,
+          },
+          getServerActionByActionId: {
+            route: `${providerRoute}/servers/:id/actions/:actionId`,
+            handler: `${providerRuntimeRoute}/servers/[id]/actions/[actionId]/index.get`,
+          },
+          commandServer: {
+            route: `${providerRoute}/servers/:id/actions/commands/:action`,
+            handler: `${providerRuntimeRoute}/servers/[id]/actions/commands/[action].post`,
+          },
+          requestServerConsole: {
+            route: `${providerRoute}/servers/:id/actions/console`,
+            handler: `${providerRuntimeRoute}/servers/[id]/actions/console.post`,
+          },
+        },
+      }
+
+      addImports({
+        name: 'useHetzner',
+        as: 'useHetzner',
+        from: resolver.resolve('runtime/composables/useHetzner'),
+      })
+
+      await Promise.all([
+        Object.entries(hetznerServerHandlers).flatMap(([key, value]) =>
+          Object.entries(value).map(([subKey, subValue]) => {
+            const { route, handler } = subValue
+            return addServerHandler({
+              route: route,
+              handler: resolver.resolve(handler),
+            })
+          }),
+        ),
+      ])
+    }
+
+    addImports({
+      name: 'useCoolify',
+      as: 'useCoolify',
+      from: resolver.resolve('runtime/composables/useCoolify'),
+    })
+    addServerHandler({
+      middleware: true,
+      handler: resolver.resolve('./runtime/server/middleware/coolify'),
+    })
 
     await Promise.all([
-      Object.entries(serverHandlers).flatMap(([key, value]) =>
+      Object.entries(coolifyServerHandlers).flatMap(([key, value]) =>
         Object.entries(value).map(([subKey, subValue]) => {
           const { route, handler } = subValue
           return addServerHandler({
