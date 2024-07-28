@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.0.10
+
+[compare changes](https://undefined/undefined/compare/v0.0.9...v0.0.10)
+
+### 🚀 Enhancements
+
+- Added the hetzner endpoint module imorts (e248aea)
+
+### ❤️ Contributors
+
+- H+ ([@justserdar](http://github.com/justserdar))
+
 ## v0.0.9
 
 [compare changes](https://undefined/undefined/compare/v0.0.8...v0.0.9)
