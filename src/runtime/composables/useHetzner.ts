@@ -60,6 +60,8 @@ export function useHetzner() {
   const getAllServerActionsForServer = (uuid: string) => useApi(`/servers/${uuid}/actions`)
   const sendActionToServer = (uuid: string, action: string) => useApi(`/servers/${uuid}/actions`, { method: 'POST', body: action })
   const requestTerminalAccess = (uuid: string) => useApi(`/servers/${uuid}/actions/console`)
+  const getLocations = () => useApi('/locations')
+  const getLocation = (id: string) => useApi(`/locations/${id}`)
 
-  return { listServers, getServer, createServer, updateServer, deleteServer, getServerMetrics, getAllServerActions, getServerAction, getAllServerActionsForServer, sendActionToServer, requestTerminalAccess }
+  return { listServers, getServer, createServer, updateServer, deleteServer, getServerMetrics, getAllServerActions, getServerAction, getAllServerActionsForServer, sendActionToServer, requestTerminalAccess, getLocations, getLocation }
 }

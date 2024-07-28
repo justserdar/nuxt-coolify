@@ -216,6 +216,12 @@ export default defineNuxtModule<ModuleOptions>({
           handler: `${runtimeRoute}/teams/current/members.get`,
         },
       },
+      instances: {
+        list: {
+          route: `${route}/instances`,
+          handler: `${runtimeRoute}/instances/index.get`,
+        },
+      },
       resources: {
         list: {
           route: `${route}/resources/list`,
@@ -297,6 +303,14 @@ export default defineNuxtModule<ModuleOptions>({
             route: `${providerRoute}/servers/:id/actions/console`,
             handler: `${providerRuntimeRoute}/servers/[id]/actions/console.post`,
           },
+          getLocations: {
+            route: `${providerRoute}/locations`,
+            handler: `${providerRuntimeRoute}/locations/index.get`,
+          },
+          getLocation: {
+            route: `${providerRoute}/locations/:id`,
+            handler: `${providerRuntimeRoute}/locations/[id]/index.get`,
+          },
         },
       }
 
@@ -304,6 +318,10 @@ export default defineNuxtModule<ModuleOptions>({
         name: 'useHetzner',
         as: 'useHetzner',
         from: resolver.resolve('runtime/composables/useHetzner'),
+      })
+      addServerHandler({
+        middleware: true,
+        handler: resolver.resolve('./runtime/server/middleware/hetzner'),
       })
 
       await Promise.all([

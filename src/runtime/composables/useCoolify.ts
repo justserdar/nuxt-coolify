@@ -43,7 +43,7 @@ export function useCoolify() {
 
     return { data, pending, error, refresh: fetchData }
   }
-
+  const getAuthorizedInstances = () => useApi('/instances')
   const getHealthcheck = () => useApi('/authorisation/healthcheck')
   const enableAPI = (data: string) =>
     useApi('/authorisation/enable', { method: 'GET', body: data })
@@ -103,6 +103,7 @@ export function useCoolify() {
     useApi('/teams/current/members', { method: 'GET' })
 
   return {
+    getAuthorizedInstances,
     getHealthcheck,
     enableAPI,
     disableAPI,
