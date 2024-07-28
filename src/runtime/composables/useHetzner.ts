@@ -62,6 +62,13 @@ export function useHetzner() {
   const requestTerminalAccess = (uuid: string) => useApi(`/servers/${uuid}/actions/console`)
   const getLocations = () => useApi('/locations')
   const getLocation = (id: string) => useApi(`/locations/${id}`)
+  const getDatacenters = () => useApi('/datacenters')
+  const getDatacenter = (id: string) => useApi(`/datacenters/${id}`)
+  const getServerTypes = () => useApi('/server/types')
+  const getServerType = (id: string) => useApi(`/server/types/${id}`)
 
-  return { listServers, getServer, createServer, updateServer, deleteServer, getServerMetrics, getAllServerActions, getServerAction, getAllServerActionsForServer, sendActionToServer, requestTerminalAccess, getLocations, getLocation }
+  return { listServers, getServer, createServer, updateServer, deleteServer, getServerMetrics, getAllServerActions, getServerAction, getAllServerActionsForServer, sendActionToServer, requestTerminalAccess, getLocations, getLocation, getDatacenters,
+    getDatacenter,
+    getServerTypes,
+    getServerType }
 }
