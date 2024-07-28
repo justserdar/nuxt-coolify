@@ -1,6 +1,27 @@
 # Changelog
 
 
+## v0.0.8
+
+[compare changes](https://undefined/undefined/compare/v0.0.7...v0.0.8)
+
+### 🚀 Enhancements
+
+- Updated the installation docs, included the updated runtimeConfig module options (8ae99c0)
+- Docs update (130b5d7)
+- General docs update, fixing typo's and errors (a17bbc8)
+- Updated the docs and removed typo's (1681dca)
+- UseHetzner() upgrade, location endpoints, handlers and helpers. Added a hetzner middleware func to catch empty env var. Upgraded useCoolify's instance endpoints and created new functions. (12719e9)
+
+### 🩹 Fixes
+
+- Updated Readme and useCoolify docs (465c395)
+- Removed unused func in playground example page (70fb3fd)
+
+### ❤️ Contributors
+
+- H+ ([@justserdar](http://github.com/justserdar))
+
 ## v0.0.7
 
 [compare changes](https://undefined/undefined/compare/v0.0.6...v0.0.7)
