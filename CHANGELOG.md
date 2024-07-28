@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.0.11
+
+[compare changes](https://undefined/undefined/compare/v0.0.10...v0.0.11)
+
+### 🩹 Fixes
+
+- Import typo in the module (1990e5e)
+
+### ❤️ Contributors
+
+- H+ ([@justserdar](http://github.com/justserdar))
+
 ## v0.0.10
 
 [compare changes](https://undefined/undefined/compare/v0.0.9...v0.0.10)
