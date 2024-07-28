@@ -175,7 +175,7 @@
 <script setup lang="ts">
 import { useCoolify, useHetzner } from '#imports'
 
-const { listServers, getLocations } = useHetzner()
+const { listServers } = useHetzner()
 const { getAuthorizedInstances } = useCoolify()
 const { data: instances, pending: cPending, error: cError, refresh: refreshInstanceList } = getAuthorizedInstances()
 const { data: serverList, pending: hPending, error: hError, refresh: refreshServerList } = listServers()
