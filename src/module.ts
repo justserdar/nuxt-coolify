@@ -320,12 +320,12 @@ export default defineNuxtModule<ModuleOptions>({
             handler: `${providerRuntimeRoute}/datacenters/[id]/index.get`,
           },
           getServerTypes: {
-            route: `${providerRoute}/server/types`,
-            handler: `${providerRuntimeRoute}/locations/index.get`,
+            route: `${providerRoute}/servers/types`,
+            handler: `${providerRuntimeRoute}/servers/index.get`,
           },
           getServerType: {
-            route: `${providerRoute}/server/types/:id`,
-            handler: `${providerRuntimeRoute}/server/types/[id]/index.get`,
+            route: `${providerRoute}/servers/types/:id`,
+            handler: `${providerRuntimeRoute}/servers/types/[id]/index.get`,
           },
         },
       }
