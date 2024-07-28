@@ -311,6 +311,22 @@ export default defineNuxtModule<ModuleOptions>({
             route: `${providerRoute}/locations/:id`,
             handler: `${providerRuntimeRoute}/locations/[id]/index.get`,
           },
+          getDatacenters: {
+            route: `${providerRoute}/datacenters`,
+            handler: `${providerRuntimeRoute}/datacenters/index.get`,
+          },
+          getDatacenter: {
+            route: `${providerRoute}/datacenters/:id`,
+            handler: `${providerRuntimeRoute}/datacenters/[id]/index.get`,
+          },
+          getServerTypes: {
+            route: `${providerRoute}/server/types`,
+            handler: `${providerRuntimeRoute}/locations/index.get`,
+          },
+          getServerType: {
+            route: `${providerRoute}/server/types/:id`,
+            handler: `${providerRuntimeRoute}/server/types/[id]/index.get`,
+          },
         },
       }
 
