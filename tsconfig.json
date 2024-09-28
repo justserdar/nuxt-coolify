@@ -1,11 +1,7 @@
 {
   "extends": "./.nuxt/tsconfig.json",
-  "compilerOptions": {
-    "moduleResolution": "nodenext",
-    "target": "esnext",
-    "module": "NodeNext",
-  },
   "exclude": [
+    "docs",
     "dist",
     "node_modules",
     "playground",
