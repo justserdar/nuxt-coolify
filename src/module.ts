@@ -36,8 +36,8 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {
     instances: {
       default: {
-        baseUrl: process.env.COOLIFY_BASE_API_URL || 'missing',
-        apiToken: process.env.COOLIFY_API_TOKEN || 'missing',
+        baseUrl: '', // NUXT_COOLIFY_INSTANCES_DEFAULT_BASE_URL
+        apiToken: '', // NUXT_COOLIFY_INSTANCES_DEFAULT_API_TOKEN
       },
     },
     routeAlias: '_coolify',
@@ -45,8 +45,8 @@ export default defineNuxtModule<ModuleOptions>({
     enableProviders: false,
     providers: {
       hetzner: {
-        apiToken: process.env.HETZNER_API_TOKEN || 'missing',
-        baseUrl: process.env.HETZNER_BASE_API_URL || 'https://api.hetzner.cloud/v1',
+        baseUrl: 'https://api.hetzner.cloud/v1', // NUXT_COOLIFY_PROVIDERS_HETZNER_BASE_URL
+        apiToken: '', // NUXT_COOLIFY_PROVIDERS_HETZNER_API_TOKEN
       },
     },
   },
