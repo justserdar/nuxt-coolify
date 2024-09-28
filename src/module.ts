@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   defineNuxtModule,
   createResolver,
@@ -43,11 +42,11 @@ export default defineNuxtModule<ModuleOptions>({
       },
     },
   },
-  async setup(_options, _nuxt) {
-    const nuxtOptions = _nuxt.options
+  async setup(options, nuxt) {
+    const nuxtOptions = nuxt.options
     const moduleOptions: ModuleOptions = defu(
       nuxtOptions.runtimeConfig.coolify || {},
-      _options,
+      options,
     )
     nuxtOptions.runtimeConfig.coolify = moduleOptions
 
@@ -59,7 +58,7 @@ export default defineNuxtModule<ModuleOptions>({
       console.warn('Please provide a valid API Token for your Coolify API.')
     }
 
-    _nuxt.hooks.hook('nitro:config', async (nitroConfig) => {
+    nuxt.hooks.hook('nitro:config', async (nitroConfig) => {
       nitroConfig.externals = nitroConfig.externals || {}
       nitroConfig.externals.inline = nitroConfig.externals.inline || []
       nitroConfig.externals.inline.push(resolver.resolve('./runtime'))
@@ -341,8 +340,8 @@ export default defineNuxtModule<ModuleOptions>({
       })
 
       await Promise.all([
-        Object.entries(hetznerServerHandlers).flatMap(([key, value]) =>
-          Object.entries(value).map(([subKey, subValue]) => {
+        Object.entries(hetznerServerHandlers).flatMap(([_key, value]) =>
+          Object.entries(value).map(([_subKey, subValue]) => {
             const { route, handler } = subValue
             return addServerHandler({
               route: route,
@@ -364,8 +363,8 @@ export default defineNuxtModule<ModuleOptions>({
     })
 
     await Promise.all([
-      Object.entries(coolifyServerHandlers).flatMap(([key, value]) =>
-        Object.entries(value).map(([subKey, subValue]) => {
+      Object.entries(coolifyServerHandlers).flatMap(([_key, value]) =>
+        Object.entries(value).map(([_subKey, subValue]) => {
           const { route, handler } = subValue
           return addServerHandler({
             route: route,
