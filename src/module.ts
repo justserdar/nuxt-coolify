@@ -53,15 +53,13 @@ export default defineNuxtModule<ModuleOptions>({
   async setup(options, nuxt) {
     const resolver = createResolver(import.meta.url)
 
-    const nuxtOptions = nuxt.options
-    const moduleOptions = defu<
+    const moduleOptions = nuxt.options.runtimeConfig.coolify = defu<
       RuntimeConfig['coolify'],
       ModuleOptions[]
     >(
-      nuxtOptions.runtimeConfig.coolify,
+      nuxt.options.runtimeConfig.coolify,
       options,
     )
-    nuxtOptions.runtimeConfig.coolify = moduleOptions
 
     if (moduleOptions.instances['default'].baseUrl === 'missing') {
       consola.warn('Please provide the base URL for your Coolify API. Ex: https://api.coolify.io')
