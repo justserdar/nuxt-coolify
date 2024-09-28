@@ -1,7 +1,9 @@
 export default defineNuxtConfig({
   modules: ['../src/module'],
 
-  // coolify options edited via `.env`
+  coolify: {
+    enableProviders: true,
+  },
 
   devtools: { enabled: true },
   compatibilityDate: '2024-07-25',
