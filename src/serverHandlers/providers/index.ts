@@ -16,7 +16,7 @@ export function addProvidersServerHandlers(resolver: Resolver, moduleOptions: Ru
   const allowedServerProviders: ServerProviders[] = ['hetzner']
 
   for (const [providerName] of providerEntries) {
-    if (allowedServerProviders.includes(providerName as ServerProviders)) {
+    if (!allowedServerProviders.includes(providerName as ServerProviders)) {
       consola.warn(`Provider ${providerName} is not currently supported and will be skipped. Only Hetzner is supported at the moment.`)
       continue
     }
