@@ -24,7 +24,7 @@ export interface ModuleOptions {
   routeVersionAlias?: string
   enableProviders?: boolean
   providers?: {
-    [key in ServerProviders]: { apiToken: string, baseUrl: string }
+    [key in ServerProviders]: { apiToken: string, baseUrl?: string }
   }
 }
 
