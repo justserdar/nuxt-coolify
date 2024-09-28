@@ -61,11 +61,11 @@ export default defineNuxtModule<ModuleOptions>({
       options,
     )
 
-    if (moduleOptions.instances['default'].baseUrl === 'missing') {
+    if (!moduleOptions.instances['default'].baseUrl) {
       consola.warn('Please provide the base URL for your Coolify API. Ex: https://api.coolify.io')
     }
 
-    if (moduleOptions.instances['default'].apiToken === 'missing') {
+    if (!moduleOptions.instances['default'].apiToken) {
       consola.warn('Please provide a valid API Token for your Coolify API.')
     }
 
