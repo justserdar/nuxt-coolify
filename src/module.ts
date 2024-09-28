@@ -1,7 +1,7 @@
+import type { RuntimeConfig } from '@nuxt/schema'
 import {
   defineNuxtModule,
   createResolver,
-  addImportsDir,
   addImports,
   addServerHandler,
 } from '@nuxt/kit'
@@ -44,7 +44,10 @@ export default defineNuxtModule<ModuleOptions>({
   },
   async setup(options, nuxt) {
     const nuxtOptions = nuxt.options
-    const moduleOptions: ModuleOptions = defu(
+    const moduleOptions = defu<
+      RuntimeConfig['coolify'],
+      ModuleOptions[]
+    >(
       nuxtOptions.runtimeConfig.coolify || {},
       options,
     )
