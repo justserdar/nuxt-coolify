@@ -78,7 +78,7 @@ export default defineNuxtModule<ModuleOptions>({
     addImports({
       name: 'useCoolify',
       as: 'useCoolify',
-      from: resolver.resolve('runtime/composables/useCoolify'),
+      from: resolver.resolve('./runtime/composables/useCoolify'),
     })
     addServerHandler({
       middleware: true,
