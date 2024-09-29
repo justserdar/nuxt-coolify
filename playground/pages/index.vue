@@ -12,7 +12,7 @@
         <div v-else-if="!cPending">
           <ul style="list-style: none;">
             <li>
-              Total Instances:: {{ instances?.length }}
+              Total Instances: {{ instances?.length }}
             </li>
             <li>
               <button @click.prevent="refreshInstanceList">
@@ -115,7 +115,7 @@
         </div>
       </client-only>
     </div>
-    <div>
+    <!-- <div>
       <h2>Hetzner Servers</h2>
       <div v-if="hPending">
         Loading Servers...
@@ -168,15 +168,15 @@
           </template>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script setup lang="ts">
-import { useCoolify, useHetzner } from '#imports'
+import { useCoolify /* , useHetzner */ } from '#imports'
 
-const { listServers } = useHetzner()
 const { getAuthorizedInstances } = useCoolify()
 const { data: instances, pending: cPending, error: cError, refresh: refreshInstanceList } = getAuthorizedInstances()
-const { data: serverList, pending: hPending, error: hError, refresh: refreshServerList } = listServers()
+// const { listServers } = useHetzner()
+// const { data: serverList, pending: hPending, error: hError, refresh: refreshServerList } = listServers()
 </script>
