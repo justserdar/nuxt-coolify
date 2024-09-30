@@ -117,7 +117,7 @@
     </div>
     <div>
       <h2>Hetzner Servers</h2>
-      <div v-if="hPending">
+      <div v-if="hStatus === 'pending'">
         Loading Servers...
       </div>
       <div v-else-if="hError">
@@ -129,7 +129,7 @@
             Total Servers: {{ serverList.servers.length }}
           </li>
           <li>
-            <button @click.prevent="refreshServerList">
+            <button @click.prevent="refreshServerList()">
               Refresh Servers
             </button>
           </li>
@@ -173,10 +173,9 @@
 </template>
 
 <script setup lang="ts">
-import { useCoolify, useHetzner } from '#imports'
+import { useCoolify } from '#imports'
 
-const { listServers } = useHetzner()
 const { getAuthorizedInstances } = useCoolify()
 const { data: instances, pending: cPending, error: cError, refresh: refreshInstanceList } = getAuthorizedInstances()
-const { data: serverList, pending: hPending, error: hError, refresh: refreshServerList } = listServers()
+const { data: serverList, status: hStatus, error: hError, refresh: refreshServerList } = useFetch('/api/_v1/_hetzner/servers')
 </script>

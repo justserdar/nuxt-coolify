@@ -10,21 +10,22 @@ import { defu } from 'defu'
 
 import {
   addCoolifyServerHandlers,
-  addProvidersServerHandlers,
+  addServerProviders,
 } from './serverHandlers'
+
+export type * from './runtime/types/index'
 
 export type ServerProviders = 'hetzner'
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {
   instances: {
-    [key: string | 'default']: { apiToken: string, baseUrl: string }
+    [key: string | 'default']: { apiToken: string, baseURL: string }
   }
   routeAlias?: string
   routeVersionAlias?: string
-  enableProviders?: boolean
   providers?: {
-    [key in ServerProviders]: { apiToken: string, baseUrl: string }
+    [key in ServerProviders]: { apiToken: string, baseURL: string }
   }
 }
 
@@ -36,16 +37,15 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {
     instances: {
       default: {
-        baseUrl: '', // NUXT_COOLIFY_INSTANCES_DEFAULT_BASE_URL
+        baseURL: '', // NUXT_COOLIFY_INSTANCES_DEFAULT_BASE_URL
         apiToken: '', // NUXT_COOLIFY_INSTANCES_DEFAULT_API_TOKEN
       },
     },
     routeAlias: '_coolify',
     routeVersionAlias: '_v1',
-    enableProviders: false,
     providers: {
       hetzner: {
-        baseUrl: 'https://api.hetzner.cloud/v1', // NUXT_COOLIFY_PROVIDERS_HETZNER_BASE_URL
+        baseURL: 'https://api.hetzner.cloud/v1', // NUXT_COOLIFY_PROVIDERS_HETZNER_BASE_URL
         apiToken: '', // NUXT_COOLIFY_PROVIDERS_HETZNER_API_TOKEN
       },
     },
@@ -53,17 +53,15 @@ export default defineNuxtModule<ModuleOptions>({
   async setup(options, nuxt) {
     const resolver = createResolver(import.meta.url)
 
-    const nuxtOptions = nuxt.options
-    const moduleOptions = defu<
+    const moduleOptions = nuxt.options.runtimeConfig.coolify = defu<
       RuntimeConfig['coolify'],
       ModuleOptions[]
     >(
-      nuxtOptions.runtimeConfig.coolify,
+      nuxt.options.runtimeConfig.coolify,
       options,
     )
-    nuxtOptions.runtimeConfig.coolify = moduleOptions
 
-    if (moduleOptions.instances['default'].baseUrl === 'missing') {
+    if (moduleOptions.instances['default'].baseURL === 'missing') {
       consola.warn('Please provide the base URL for your Coolify API. Ex: https://api.coolify.io')
     }
 
@@ -88,6 +86,15 @@ export default defineNuxtModule<ModuleOptions>({
     })
 
     addCoolifyServerHandlers(resolver, moduleOptions)
-    addProvidersServerHandlers(resolver, moduleOptions)
+    addServerProviders(resolver, moduleOptions)
   },
 })
+
+declare module '@nuxt/schema' {
+  interface NuxtOptions {
+    coolify: ModuleOptions
+    runtimeConfig: {
+      coolify: ModuleOptions
+    }
+  }
+}
