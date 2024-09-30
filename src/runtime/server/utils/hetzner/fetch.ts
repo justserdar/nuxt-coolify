@@ -36,8 +36,6 @@ export function useFetchHetzner<
     })
   }
 
-  console.info('hetzner info:', baseURL, apiToken)
-
   const hetzner = ofetch.create({
     baseURL,
     onRequest({ options }) {
@@ -47,7 +45,6 @@ export function useFetchHetzner<
         'content-type': 'application/json',
         'Accept': 'application/json',
       })
-      console.info('headers:', JSON.stringify(options.headers, null, 2))
     },
   })
 
