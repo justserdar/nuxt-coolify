@@ -115,6 +115,7 @@
         </div>
       </client-only>
     </div>
+
     <div>
       <h2>Hetzner Servers</h2>
       <div v-if="hStatus === 'pending'">
@@ -141,29 +142,45 @@
           >
             <p>{{ server.name }}</p>
             <table :ref="`${server.id}-server-table`">
-              <tr>
-                <th>Name</th>
-                <th>IP</th>
-                <th>OS</th>
-                <th>Location</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-              <tr>
-                <td>{{ server.name }}</td>
-                <td>{{ server.public_net.ipv4.ip }}</td>
-                <td>{{ server.image.name }}</td>
-                <td>{{ server.datacenter.location.name }}</td>
-                <td>{{ server.status }}</td>
-                <td>
-                  <select>
-                    <option>Reboot</option>
-                    <option>Power Off</option>
-                    <option>Power On</option>
-                    <option>Request Console</option>
-                  </select>
-                </td>
-              </tr>
+              <thead>
+                <tr>
+                  <th scope="head">
+                    Name
+                  </th>
+                  <th scope="head">
+                    IP
+                  </th>
+                  <th scope="head">
+                    OS
+                  </th>
+                  <th scope="head">
+                    Location
+                  </th>
+                  <th scope="head">
+                    Status
+                  </th>
+                  <th scope="head">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ server.name }}</td>
+                  <td>{{ server.public_net.ipv4.ip }}</td>
+                  <td>{{ server.image.name }}</td>
+                  <td>{{ server.datacenter.location.name }}</td>
+                  <td>{{ server.status }}</td>
+                  <td>
+                    <select>
+                      <option>Reboot</option>
+                      <option>Power Off</option>
+                      <option>Power On</option>
+                      <option>Request Console</option>
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </template>
         </div>
