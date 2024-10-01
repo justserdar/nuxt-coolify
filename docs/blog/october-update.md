@@ -5,7 +5,7 @@ sidebar: false
 # Major version v0.1.0 landed
 
 With the major update v0.1.0, we made some design changes and added some new features that will benefit the module in the long term.
-This has to do with our internal talks about openapi integration and design choices running regarding multiple Coolify instances and multiple provider accounts like Hetzner.
+This has to do with our internal talks about further integration and design choices running regarding multiple Coolify instances and multiple provider accounts like Hetzner.
 
 ## TL:DR What's new?
 

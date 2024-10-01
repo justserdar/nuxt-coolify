@@ -50,9 +50,6 @@ HETZNER_API_TOKEN=<your-hetzner-api-token>
 ```
 Note: To get your Coolify API token, go to the API section in your Coolify Dashboard and create one there.
 
-
-You can directly import 'useCoolify()', Nuxt automagicly imports it:
-
 ```vue
 <script setup>
 const { data: instances, status: status, error: error, refresh: refreshInstanceList } = useFetch('/api/_v1/_coolify/instances')

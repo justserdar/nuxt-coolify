@@ -23,6 +23,5 @@ Bridging Web DevOps with AppDev and making it fun while at it!
 # Roadmap
 
 The majority of the module exists of Nitro event handlers/ API endpoints.
-Writing these API endpoints is quite the hassle, personally I enjoy writing controllers, handlers and API endpoints in general. But too future proof and minimize servicing these endpoints, at some point I will make the jump to autoimport the API's using OpenAPI altogether in Nitro, so more time can be spent on enrichting the core module feature set versus managing tech debt.
+Writing these API endpoints is quite the hassle, personally I enjoy writing controllers, handlers and API endpoints in general.
 
-OpenAPI integration is definitly on the list.
