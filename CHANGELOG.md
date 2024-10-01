@@ -1,6 +1,51 @@
 # Changelog
 
 
+## v0.1.0
+
+[compare changes](https://undefined/undefined/compare/v0.0.11...v0.1.0)
+
+### 🩹 Fixes
+
+- Ts compilerOptions (9f3ada8)
+- ⚠️  Make environment variables runtime safe (8c44156)
+- Commented out useHetzner composable in playground due to incoming changes (b7356a7)
+- UseFetchHetzner headers (850ca2c)
+- Headers (8b6869c)
+- Handle coolify api route within baseURL (435e955)
+- Better error reports (613b3ea)
+- Duplicate v-for names (33593c6)
+
+### 💅 Refactors
+
+- Module const names (8e2d4b8)
+- ServerHandler initialization (4cc54cc)
+- ⚠️  UseHetzner (2c4c5eb)
+- ⚠️  UseCoolify (ad9d2bf)
+
+### 🏡 Chore
+
+- Minor typing improvements (9dab461)
+- Minor typing improvements (e8e3bb2)
+- Update deps and init pnpm-workspace (ab48db4)
+- Update eslint flat config (4703c6b)
+- Update eslint flat config (57bd794)
+- Update playground (2f25571)
+- Regenerate pnpm-lock (1cc9b18)
+- Update playground to prepare for h3 v2 (0d56ada)
+- Update playground (11711d3)
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Make environment variables runtime safe (8c44156)
+- ⚠️  UseHetzner (2c4c5eb)
+- ⚠️  UseCoolify (ad9d2bf)
+
+### ❤️ Contributors
+
+- H+ ([@justserdar](http://github.com/justserdar))
+- Sandros94 ([@sandros94](http://github.com/sandros94))
+
 ## v0.0.11
 
 [compare changes](https://undefined/undefined/compare/v0.0.10...v0.0.11)
