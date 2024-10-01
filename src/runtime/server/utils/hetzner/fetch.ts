@@ -39,7 +39,6 @@ export function useFetchHetzner<
   const hetzner = ofetch.create({
     baseURL,
     onRequest({ options }) {
-      options.headers ||= {}
       options.headers = defu<Headers, HeadersInit[]>(options.headers, {
         'Authorization': `Bearer ${apiToken}`,
         'content-type': 'application/json',
