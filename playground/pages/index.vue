@@ -30,6 +30,31 @@
                 v-for="(instanceGroup, instanceGroupIndex) in serverGroup"
                 :key="instanceGroupIndex"
               >
+      <client-only>
+        <div v-if="cPending">
+          Loading Instances...
+        </div>
+        <div v-else-if="cError">
+          Error: {{ cError?.message }}
+        </div>
+        <div v-else-if="!cPending">
+          <ul style="list-style: none;">
+            <li>
+              Total Instances: {{ instances?.length }}
+            </li>
+            <li>
+              <button @click.prevent="refreshInstanceList">
+                Refresh Servers
+              </button>
+            </li>
+          </ul>
+          <div class="grid grid-cols-3 gap-3 py-3">
+            <div
+              v-for="(serverGroup, groupIndex) in instances"
+              :key="groupIndex"
+              class="bg-gray-200 dark:bg-gray-900 p-2 rounded-lg shadow-md"
+            >
+              <div class="grid grid-cols-2 gap-3 space-y-1 px-3 py-4">
                 <template
                   v-for="instance in instanceGroup"
                   :key="instance.uuid"
@@ -103,7 +128,7 @@
     </div>
 
     <div>
-      <h2>Hetzner Servers</h2>
+      <h2>Hetzner Servers</h2>a
       <div v-if="hStatus === 'pending'">
         Loading Servers...
       </div>
@@ -171,7 +196,7 @@
           </template>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
