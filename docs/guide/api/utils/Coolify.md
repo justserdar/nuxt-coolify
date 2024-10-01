@@ -14,7 +14,6 @@ icon: simple-icons:sqlite
 
 To reach the internal Coolify API endpoints within the module, you can use the built-in endpoints. 
 
-
 ## Endpoints
 
 List of available endpoints coming soon
