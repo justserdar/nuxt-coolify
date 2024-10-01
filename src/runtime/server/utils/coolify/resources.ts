@@ -9,7 +9,7 @@ import {
 export function useCoolifyResources(coolifyInstance?: Instance) {
   return {
     list:
-      <T>(instance?: Instance) => useFetchCoolify<T>('/api/v1/resources', {
+      <T>(instance?: Instance) => useFetchCoolify<T>('/resources', {
         coolifyInstance: instance || coolifyInstance,
       }),
     // createResource,

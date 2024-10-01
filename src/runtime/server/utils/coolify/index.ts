@@ -8,14 +8,14 @@ import {
 export function useCoolify(coolifyInstance?: Instance) {
   function instances<T>(instance?: Instance) {
     if (instance || coolifyInstance) {
-      return useFetchCoolify<T>('/api/v1/servers', { coolifyInstance: instance || coolifyInstance })
+      return useFetchCoolify<T>('/servers', { coolifyInstance: instance || coolifyInstance })
     }
 
     const { instances } = useRuntimeConfig().coolify
     return Promise.all(
       Object.entries(instances).map(async ([key, _]) => {
         return {
-          [key]: (await useFetchCoolify<T>('/api/v1/servers', { coolifyInstance: (key as keyof typeof instances) })),
+          [key]: (await useFetchCoolify<T>('/servers', { coolifyInstance: (key as keyof typeof instances) })),
         }
       }),
     )
@@ -23,14 +23,14 @@ export function useCoolify(coolifyInstance?: Instance) {
 
   function healthcheck<T>(instance?: Instance) {
     if (instance || coolifyInstance) {
-      return useFetchCoolify<T>('/api/v1/healthcheck', { coolifyInstance: instance || coolifyInstance })
+      return useFetchCoolify<T>('/healthcheck', { coolifyInstance: instance || coolifyInstance })
     }
 
     const { instances } = useRuntimeConfig().coolify
     return Promise.all(
       Object.entries(instances).map(async ([key, _]) => {
         return {
-          [key]: (await useFetchCoolify<T>('/api/v1/healthcheck', { coolifyInstance: (key as keyof typeof instances) })),
+          [key]: (await useFetchCoolify<T>('/healthcheck', { coolifyInstance: (key as keyof typeof instances) })),
         }
       }),
     )
@@ -38,14 +38,14 @@ export function useCoolify(coolifyInstance?: Instance) {
 
   function version<T>(instance?: Instance) {
     if (instance || coolifyInstance) {
-      return useFetchCoolify<T>('/api/v1/version', { coolifyInstance: instance || coolifyInstance })
+      return useFetchCoolify<T>('/version', { coolifyInstance: instance || coolifyInstance })
     }
 
     const { instances } = useRuntimeConfig().coolify
     return Promise.all(
       Object.entries(instances).map(async ([key, _]) => {
         return {
-          [key]: (await useFetchCoolify<T>('/api/v1/version', { coolifyInstance: (key as keyof typeof instances) })),
+          [key]: (await useFetchCoolify<T>('/version', { coolifyInstance: (key as keyof typeof instances) })),
         }
       }),
     )
@@ -56,8 +56,8 @@ export function useCoolify(coolifyInstance?: Instance) {
     version,
     healthcheck,
     enableAPI:
-      <T>(instance?: Instance) => useFetchCoolify<T>('/api/v1/enable', { coolifyInstance: instance || coolifyInstance }),
+      <T>(instance?: Instance) => useFetchCoolify<T>('/enable', { coolifyInstance: instance || coolifyInstance }),
     disableAPI:
-      <T>(instance?: Instance) => useFetchCoolify<T>('/api/v1/disable', { coolifyInstance: instance || coolifyInstance }),
+      <T>(instance?: Instance) => useFetchCoolify<T>('/disable', { coolifyInstance: instance || coolifyInstance }),
   }
 }
