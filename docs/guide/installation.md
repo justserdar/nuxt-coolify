@@ -43,10 +43,10 @@ export default defineNuxtConfig({
 2. Add the required Coolify environment variables in your `.env` file.
 
 ```bash
-COOLIFY_BASE_API_URL=<your-coolify-url>
-COOLIFY_API_TOKEN=<your-coolify-api-token>
-HETZNER_BASE_API_URL=<hetzner-api-url>
-HETZNER_API_TOKEN=<your-hetzner-api-token>
+NUXT_COOLIFY_INSTANCES_DEFAULT_BASE_URL=<your-coolify-url>
+NUXT_COOLIFY_INSTANCES_DEFAULT_API_TOKEN=<your-coolify-api-token>
+NUXT_COOLIFY_PROVIDERS_HETZNER_BASE_URL=<your-hetzner-api-url>
+NUXT_COOLIFY_PROVIDERS_HETZNER_API_TOKEN=<your-hetzner-api-token>
 ```
 Note: To get your Coolify API token, go to the API section in your Coolify Dashboard and create one there.
 
