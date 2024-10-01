@@ -29,8 +29,13 @@ export default defineConfig({
       {
         text: 'API',
         items: [
-          { text: 'useCoolify()', link: '/guide/api/composables/useCoolify.md' },
-          { text: 'useHetzner()', link: '/guide/api/composables/useHetzner.md' },
+          { text: 'Coolify', link: '/guide/api/utils/coolify.md' },
+          { text: 'Providers', link: '/guide/api/utils/providers.md',
+            items: [
+              { text: 'Hetzner', link: '/guide/api/utils/providers/hetzner.md' },
+              { text: 'Vultr', link: '/guide/api/utils/providers/vultr.md' },
+            ],
+          },
         ],
       },
     ],

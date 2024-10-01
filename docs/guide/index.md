@@ -18,6 +18,7 @@ Bridging Web DevOps with AppDev and making it fun while at it!
 - Nitro Networking: Benefit from Nuxt's versatile backend API that actually does most of the magic.
 - Seamless Deployments: Easy setup for various deployment scenarios.
 - Bring your own CSS: The module offers the functionality so you can create the dashboard of your dreams using Vue.
+- Bring your own Auth: The module offers the functionality so you can use your own authentication method.
 
 # Roadmap
 

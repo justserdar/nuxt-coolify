@@ -20,6 +20,12 @@ This module helps as a alternative to self-hosting platforms as Vercel and Cloud
 
 Stay Tuned!
 
+
+## October 2024 update
+
+Click here to read the [October update](./october-update.md)
+
+
 ## Join the Coolify Community
 
 If you've gotten excited about Coolify as I am, join the Coolify Discord!

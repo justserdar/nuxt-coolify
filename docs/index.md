@@ -17,9 +17,11 @@ hero:
 features:
   - title: Easy Dashboard Creation
     details: Customize your dashboard with your preferred CSS framework or use vanilla CSS to manage your self-hosted Coolify servers effortlessly.
-  - title: Handy Composable
-    details: Utilize the built in composables to easily access and manage your Coolify, Hetzner and Vultr instances, all from one application.
+  - title: Built in API Routes
+    details: Utilize the built in API routes to easily access and manage your Coolify, Hetzner(WIP) and Vultr(WIP) services, all from one application.
   - title: Deploying has never been easier.
     details: Enjoy the simplicity of self-hosting (or cloud hosting) with Coolify's powerful features. Seamlessly blend your DevOps and AppDev workflow.
+  - title: Bring your own Auth.
+    details: Incorporate your own auth. We believe in a agnostic- and utility-first approach and don't want to decide for you.
 ---
 

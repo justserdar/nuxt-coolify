@@ -4,40 +4,37 @@ outline: deep
 
 # Component Usage
 
-This page demonstrates  the `useCoolify()` composable provided by nuxt-coolify.
+This page demonstrates how to make API calls to your Coolify instance using Nuxt's `useFetch` composable.
 
-The main `useCoolify()` composable can be used to access your Coolify Instance or any other Coolify Instance you set have yourself access too.
+You can use any other method to make API calls to your Coolify instance, the endpoints are installed by default through the `nuxt-coolify` module.
 
 ```md
 <script setup>
-import { useCoolify } from 'nuxt-coolify'
-
-const { getVersion } = useCoolify()
-const { data: version, pending, error } = await getVersion()
+const { data: instances, status: status, error: error, refresh: refreshInstanceList } = useFetch('/api/_v1/_coolify/instances')
 </script>
 
 <template>
   <div>
-    <h2>Index</h2>
-    <div v-if="pending">
-      Loading version...
+    <h2>Instances</h2>
+    <div v-if="status === 'pending'">
+      Loading Instances...
     </div>
     <div v-else-if="error">
       Error: {{ error.message }}
     </div>
     <div v-else>
-      Version: {{ version }}
+      Instances: {{ instances }}
     </div>
   </div>
 </template>
 
 ### Pending Data
-<div v-if="pending">
+<div v-if="status === 'pending'">
     Loading Version...
 </div>
 
 ### API Response
-<pre>Version: {{ version }}</pre>
+<pre>Instances: {{ instances }}</pre>
 
 https://coolify.io/docs/api-reference/healthcheck
 ```

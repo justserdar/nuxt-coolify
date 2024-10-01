@@ -35,23 +35,7 @@ The module is currently in alpha and only available over NPM/PNPM/Yarn.
 ```ts
 export default defineNuxtConfig({
   modules: ['nuxt-coolify'],
-  runtimeConfig: {
-    coolify: {
-      instances: {
-        default: {
-          baseUrl: process.env.COOLIFY_BASE_API_URL,
-          apiToken: process.env.COOLIFY_API_TOKEN,
-        },
-      },
-      enableProviders: true,
-      providers: {
-        hetzner: {
-          baseUrl: process.env.HETZNER_BASE_API_URL,
-          apiToken: process.env.HETZNER_API_TOKEN,
-        },
-      },
-    },
-  },
+  
 })
 
 ```
@@ -62,7 +46,7 @@ export default defineNuxtConfig({
 COOLIFY_BASE_API_URL=<your-coolify-url>
 COOLIFY_API_TOKEN=<your-coolify-api-token>
 HETZNER_BASE_API_URL=<hetzner-api-url>
-HETZNER_API_TOKEN=<your-coolify-api-token>
+HETZNER_API_TOKEN=<your-hetzner-api-token>
 ```
 Note: To get your Coolify API token, go to the API section in your Coolify Dashboard and create one there.
 
@@ -70,25 +54,21 @@ Note: To get your Coolify API token, go to the API section in your Coolify Dashb
 You can directly import 'useCoolify()', Nuxt automagicly imports it:
 
 ```vue
-<script setup lang="ts">
-const { getVersion } = useCoolify()
-const { data, pending, error } = await getVersion()
-
-// or
-const { data: version, pending, error } = await useCoolify().getVersion()
+<script setup>
+const { data: instances, status: status, error: error, refresh: refreshInstanceList } = useFetch('/api/_v1/_coolify/instances')
 </script>
 
 <template>
   <div>
-    <h2>Index</h2>
-    <div v-if="pending">
-      Loading version...
+    <h2>Instances</h2>
+    <div v-if="status === 'pending'">
+      Loading Instances...
     </div>
     <div v-else-if="error">
       Error: {{ error.message }}
     </div>
     <div v-else>
-      Version: {{ data }}
+      Instances: {{ instances }}
     </div>
   </div>
 </template>
