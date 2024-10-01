@@ -2,14 +2,12 @@ import type { RuntimeConfig } from '@nuxt/schema'
 import {
   defineNuxtModule,
   createResolver,
-  addImports,
-  addServerHandler,
+  addServerImportsDir,
 } from '@nuxt/kit'
 import { consola } from 'consola'
 import { defu } from 'defu'
 
 import {
-  addCoolifyServerHandlers,
   addServerProviders,
 } from './serverHandlers'
 
@@ -22,10 +20,8 @@ export interface ModuleOptions {
   instances: {
     [key: string | 'default']: { apiToken: string, baseURL: string }
   }
-  routeAlias?: string
-  routeVersionAlias?: string
   providers?: {
-    [key in ServerProviders]: { apiToken: string, baseURL: string }
+    [key in ServerProviders]: { apiToken: string, baseURL?: string }
   }
 }
 
@@ -41,8 +37,6 @@ export default defineNuxtModule<ModuleOptions>({
         apiToken: '', // NUXT_COOLIFY_INSTANCES_DEFAULT_API_TOKEN
       },
     },
-    routeAlias: '_coolify',
-    routeVersionAlias: '_v1',
     providers: {
       hetzner: {
         baseURL: 'https://api.hetzner.cloud/v1', // NUXT_COOLIFY_PROVIDERS_HETZNER_BASE_URL
@@ -51,7 +45,13 @@ export default defineNuxtModule<ModuleOptions>({
     },
   },
   async setup(options, nuxt) {
-    const resolver = createResolver(import.meta.url)
+    const { resolve } = createResolver(import.meta.url)
+
+    // Transpile runtime
+    const runtimeDir = resolve('./runtime')
+    nuxt.options.build.transpile.push(runtimeDir)
+
+    nuxt.options.alias['#coolify'] = runtimeDir
 
     const moduleOptions = nuxt.options.runtimeConfig.coolify = defu<
       RuntimeConfig['coolify'],
@@ -62,31 +62,15 @@ export default defineNuxtModule<ModuleOptions>({
     )
 
     if (moduleOptions.instances['default'].baseURL === 'missing') {
-      consola.warn('Please provide the base URL for your Coolify API. Ex: https://api.coolify.io')
+      consola.warn('Please provide the base URL for your Coolify API. Ex: https://api.coolify.io/api/v1')
     }
 
     if (moduleOptions.instances['default'].apiToken === 'missing') {
       consola.warn('Please provide a valid API Token for your Coolify API.')
     }
 
-    nuxt.hooks.hook('nitro:config', async (nitroConfig) => {
-      nitroConfig.externals = nitroConfig.externals || {}
-      nitroConfig.externals.inline = nitroConfig.externals.inline || []
-      nitroConfig.externals.inline.push(resolver.resolve('./runtime'))
-    })
-
-    addImports({
-      name: 'useCoolify',
-      as: 'useCoolify',
-      from: resolver.resolve('runtime/composables/useCoolify'),
-    })
-    addServerHandler({
-      middleware: true,
-      handler: resolver.resolve('./runtime/server/middleware/coolify'),
-    })
-
-    addCoolifyServerHandlers(resolver, moduleOptions)
-    addServerProviders(resolver, moduleOptions)
+    addServerImportsDir(resolve(runtimeDir, 'server', 'utils', 'coolify'))
+    addServerProviders(runtimeDir, moduleOptions)
   },
 })
 

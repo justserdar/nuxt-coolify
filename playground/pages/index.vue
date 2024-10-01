@@ -3,19 +3,19 @@
     <div>
       <h2>Coolify Instances</h2>
       <client-only>
-        <div v-if="cPending">
+        <div v-if="cStatus === 'pending'">
           Loading Instances...
         </div>
         <div v-else-if="cError">
           Error: {{ cError?.message }}
         </div>
-        <div v-else-if="!cPending">
+        <div v-else-if="cStatus === 'success'">
           <ul style="list-style: none;">
             <li>
               Total Instances:: {{ instances?.length }}
             </li>
             <li>
-              <button @click.prevent="refreshInstanceList">
+              <button @click.prevent="refreshInstanceList()">
                 Refresh Servers
               </button>
             </li>
@@ -59,13 +59,6 @@
                         />
                         <span class="font-bold text-xs dark:text-gray-600 ml-auto mr-0">{{ instance.uuid }}</span>
                       </div>
-
-                      <span
-                        v-if="index == 0"
-                        class="col-span-2"
-                      >
-                        Attached Servers: {{ server.length }}
-                      </span>
                     </template>
                     <template v-else>
                       <p
@@ -190,9 +183,6 @@
 </template>
 
 <script setup lang="ts">
-import { useCoolify } from '#imports'
-
-const { getAuthorizedInstances } = useCoolify()
-const { data: instances, pending: cPending, error: cError, refresh: refreshInstanceList } = getAuthorizedInstances()
+const { data: instances, status: cStatus, error: cError, refresh: refreshInstanceList } = useFetch('/api/_v1/_coolify/instances')
 const { data: serverList, status: hStatus, error: hError, refresh: refreshServerList } = useFetch('/api/_v1/_hetzner/servers')
 </script>
