@@ -1,6 +1,6 @@
 import type { HetznerQueryActions } from 'nuxt-coolify'
 
-export default eventHandler(async (event) => {
+export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id')
   const query = getQuery<HetznerQueryActions>(event)
 

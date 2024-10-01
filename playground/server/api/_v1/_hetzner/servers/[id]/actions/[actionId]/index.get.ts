@@ -1,4 +1,4 @@
-export default eventHandler(async (event) => {
+export default defineEventHandler(async (event) => {
   const serverId = getRouterParam(event, 'id')
   const actionId = getRouterParam(event, 'actionId')
 

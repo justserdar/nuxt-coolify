@@ -1,6 +1,6 @@
 import type { HetznerQueryDatacenters } from 'nuxt-coolify'
 
-export default eventHandler(async (event) => {
+export default defineEventHandler(async (event) => {
   const query = getQuery<HetznerQueryDatacenters>(event)
 
   // check auth permissions

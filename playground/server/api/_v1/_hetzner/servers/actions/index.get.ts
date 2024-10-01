@@ -1,6 +1,6 @@
 import type { HetznerQueryActions } from 'nuxt-coolify'
 
-export default eventHandler(async (event) => {
+export default defineEventHandler(async (event) => {
   const query = getQuery<HetznerQueryActions>(event)
 
   // check auth permissions
