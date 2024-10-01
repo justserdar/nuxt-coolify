@@ -1,6 +1,7 @@
 // The following nitropack import is from https://github.com/nuxt/module-builder/issues/141#issuecomment-2078248248
 import type {} from 'nitropack'
-import type { RuntimeConfig } from '@nuxt/schema'
+import type { RuntimeConfig } from 'nuxt/schema'
+import { consola } from 'consola'
 import { defu } from 'defu'
 import type {
   FetchRequest,
@@ -12,7 +13,7 @@ import {
   ofetch,
 } from 'ofetch'
 
-import { createError, useRuntimeConfig } from '#imports'
+import { useRuntimeConfig } from '#imports'
 
 // TODO: map each api endpoint and method
 export function useFetchCoolify<
@@ -28,16 +29,13 @@ export function useFetchCoolify<
   const { baseURL, apiToken } = useRuntimeConfig().coolify.instances[coolifyInstance || 'default']
 
   if (!baseURL) {
-    createError({
-      statusCode: 500,
-      message: 'Missing Coolify baseURL',
-    })
+    consola.error('Missing Coolify `baseURL`.')
+  }
+  else if (!baseURL.endsWith('/api/v1')) {
+    consola.error('Invalid Coolify baseURL, did you add `/api/v1`?', '\nCurrent baseURL:', baseURL)
   }
   if (!apiToken) {
-    createError({
-      statusCode: 500,
-      message: 'Missing Coolify apiToken',
-    })
+    consola.error('Missing Coolify `apiToken`.')
   }
 
   const coolify = ofetch.create({
