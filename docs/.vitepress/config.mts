@@ -1,23 +1,9 @@
 import { defineConfig } from 'vitepress'
 
-
-const umamiScript: HeadConfig = ["script", {
-  defer: "true",
-  src: process.env.UMAMI_URL,
-  "data-website-id": process.env.UMAMI_ID
-}]
-
-const baseHeaders: HeadConfig[] = []
-
-const headers = process.env.NODE_ENV === "production" ?
-  [...baseHeaders, umamiScript] :
-  baseHeaders
-
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: 'Nuxt Coolify',
   description: 'Integrate Nuxt With Coolify to simplify your deployments.',
-  head: headers,
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
