@@ -14,19 +14,12 @@ icon: simple-icons:sqlite
 
 To reach the internal Coolify API endpoints within the module, you can create yor endpoint in Nitro and then simply use our built-in server utils. 
 
-### Nuxt Example using `useFetch()`
-
-```vue
-<script setup lang="ts">
-const { data: instances, status: cStatus, error: cError, refresh: refreshInstanceList } = useFetch('/api/_v1/_coolify/instances')
-const { data: serverList, status: hStatus, error: hError, refresh: refreshServerList } = useFetch('/api/_v1/_hetzner/servers')
-</script>
-```
-
 ### Back end Nitro Example
 
+Create a new endpoint and name it e.g. `/server/api/v1/coolify/instances`:
+
 #### List all instances
-```ts [/api/_v1/_coolify/instances/index.get.ts]
+```ts
 export default defineEventHandler(async (_event) => {
   // check auth permissions
   return useCoolify().instances()
@@ -35,7 +28,7 @@ export default defineEventHandler(async (_event) => {
 
 #### List all for a specific Coolify instance
 
-```ts [/api/_v1/_coolify/instances/[name]/index.get.ts]
+```ts [~/server/api/v1/coolify/instances/[name]/index.get.ts]
 import type { Instance } from 'nuxt-coolify'
 
 export default defineEventHandler(async (event) => {
@@ -53,6 +46,15 @@ export default defineEventHandler(async (event) => {
 
   return useCoolify().instances(name as Instance)
 })
+```
+
+### Nuxt Example using `useFetch()`
+
+```vue
+<script setup lang="ts">
+const { data: instances, status: cStatus, error: cError, refresh: refreshInstanceList } = useFetch('/api/_v1/_coolify/instances')
+const { data: serverList, status: hStatus, error: hError, refresh: refreshServerList } = useFetch('/api/_v1/_hetzner/servers')
+</script>
 ```
 
 ## Helper list
