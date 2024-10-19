@@ -12,4 +12,4 @@ We are expanding the module to support more providers, here's the current line-u
 
 ## Helpers
 
-Coming soon
+Coming soon, for now you can check the source code of the module to see all the available helpers.
