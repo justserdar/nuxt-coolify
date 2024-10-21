@@ -12,6 +12,8 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
 
+  uiPro: { license: 'oss' },
+
   runtimeConfig: {
     public: {
       version: pkg.version,
