@@ -34,7 +34,7 @@ A Nuxt module aimed to integrate the Coolify and Hetzner API to simplify your de
   ---
   color: neutral
   size: xl
-  to: /examples
+  to: /
   variant: subtle
   trailing-icon: i-lucide-cable
   ---
@@ -50,7 +50,7 @@ Integrated concepts and features
   :::u-page-feature
   ---
   icon: i-lucide-smartphone-nfc
-  to: /usage/usews
+  to: /
   ---
   #title
   Easy Dashboard Creation
@@ -62,7 +62,7 @@ Customize your dashboard with your preferred CSS framework or use vanilla CSS to
   :::u-page-feature
   ---
   icon: i-lucide-arrow-left-right
-  to: /usage/definewshandler
+  to: /
   ---
   #title
   Built in API Routes
@@ -74,7 +74,7 @@ Utilize the built in API routes to easily access and manage your Coolify, Hetzne
   :::u-page-feature
   ---
   icon: i-lucide-hammer
-  to: /usage/validation
+  to: /
   ---
   #title
 Deploying has never been easier.
@@ -86,7 +86,7 @@ Deploying has never been easier.
   :::u-page-feature
   ---
   icon: i-lucide-messages-square
-  to: /usage/topics
+  to: /
   ---
   #title
   Bring your own Auth.

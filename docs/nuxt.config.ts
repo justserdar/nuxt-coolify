@@ -8,7 +8,7 @@ export default defineNuxtConfig({
     'nuxt-og-image',
     'nuxt-umami',
     // '@nuxtjs/plausible',
-    // 'nuxt-llms' // TODO: study module
+    // 'nuxt-llms'
   ],
 
   $development: {
@@ -61,7 +61,7 @@ export default defineNuxtConfig({
     autoTrack: process.env.NODE_ENV === 'production',
     id: process.env.NUXT_UMAMI_ID,
     host: process.env.NUXT_UMAMI_HOST,
-    logErrors: true
+    logErrors: true,
     // proxy: 'cloak',
     // useDirective: true,
     // ignoreLocalhost: true,
@@ -95,9 +95,5 @@ export default defineNuxtConfig({
     },
     provider: 'iconify',
   },
-
-  // plausible: {
-  //   apiHost: 'https://plausible.digitoolmedia.com',
-  // },
 
 })
