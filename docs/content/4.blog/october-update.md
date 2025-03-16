@@ -13,7 +13,7 @@ You can read the full changelog [here](https://github.com/justserdar/nuxt-coolif
 
 ### New contributor & contributions
 
-![Sandros94](/public/img/sandros94.png)
+![Sandros94](/img/sandros94.png)
 
 Meet [Sandros94](https://github.com/Sandros94), he joined the project and has made significant contributions already!
 Thanks to his work we accelerated the progression of the module and even more features are coming soon like a fully typed API. 
