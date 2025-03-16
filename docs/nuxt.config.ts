@@ -89,6 +89,10 @@ export default defineNuxtConfig({
     },
   },
 
+  image: {
+    provider: 'ipx',
+  },
+
   icon: {
     clientBundle: {
       scan: true,
