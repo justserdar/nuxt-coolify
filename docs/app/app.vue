@@ -16,6 +16,13 @@ useHead({
   link: [
     { rel: 'icon', href: '/favicon.svg' },
   ],
+  script: [
+    {
+      'src': 'https://umami.darweb.nl/script.js',
+      'defer': true,
+      'data-website-id': '705e077f-bd86-4c4d-957e-fb032efe441c',
+    },
+  ],
   htmlAttrs: {
     lang: 'en',
   },
