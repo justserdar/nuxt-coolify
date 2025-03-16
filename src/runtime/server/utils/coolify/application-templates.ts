@@ -69,7 +69,7 @@ export const publicGithubApplicationTemplate = () => {
 
 // Applications - GitHub - Create (Public) app through a GitHub App
 // https://coolify.io/docs/api-reference/applications/create-public
-export const privateGithubApplicationTemplate = () => {
+export const privateGithubApplicationTemplate = (p0: { project_uuid: string; server_uuid: string; environment_name: string; github_app_uuid: string; git_repository: string; git_branch: string; ports_exposes: string; build_pack: string }) => {
   // Create new application based on a private repository through a Github App.
   return JSON.stringify({
     project_uuid: '<string>',

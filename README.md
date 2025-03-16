@@ -5,71 +5,111 @@
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-Integrate Nuxt With Coolify to simplify your custom dashboards and extend your self-host deployment capabilities.
+Integrate Nuxt with Coolify to simplify your deployments and create custom dashboards for your self-hosted infrastructure.
 
-- [✨ &nbsp;Release Notes](/CHANGELOG.md)
-<!-- - [🏀 Online playground](https://stackblitz.com/github/your-org/nuxt-coolify?file=playground%2Fapp.vue) -->
-<!-- - [📖 &nbsp;Documentation](https://example.com) -->
+- [✨ Release Notes](/CHANGELOG.md)
+- [📖 Documentation](https://nuxt-coolify.justserdar.dev)
 
 ## Features
 
-<!-- Highlight some of the features your module provide here -->
-- ⛰ &nbsp;Use Coolify, an alternative Deployment Platform to Vercel and Cloudflare with full Nuxt templating and Nitro backend support.
+- 🎯 **Easy Dashboard Creation**
+  - Build custom dashboards with your preferred CSS framework
+  - Manage self-hosted Coolify servers effortlessly
 
-## Notice
+- 🔄 **Built-in API Routes**
+  - Ready-to-use API endpoints for Coolify integration
+  - Support for Hetzner and Vultr (Coming Soon)
+  - Type-safe API responses
 
-This module is still under development as we go, expect breaking changes!
+- 🚀 **Simple Deployments**
+  - Seamless DevOps and AppDev workflow
+  - Self-hosting and cloud hosting support
+  - Full Nuxt templating and Nitro backend support
+
+- 🔐 **Flexible Authentication**
+  - Bring your own authentication system
+  - Agnostic and utility-first approach
 
 ## Quick Setup
 
-Install the module to your Nuxt application with one command:
+1. Install the module:
 
 ```bash
-npx nuxi module add nuxt-coolify
+# Using npm
+npm install nuxt-coolify
+
+# Using pnpm
+pnpm add nuxt-coolify
+
+# Using yarn
+yarn add nuxt-coolify
 ```
 
-That's it! You can now use Nuxt Coolify in your Nuxt app ✨
+2. Add the module to your `nuxt.config.ts`:
 
-## Documentation
+```ts
+export default defineNuxtConfig({
+  modules: ['nuxt-coolify'],
+})
+```
 
-Visit [nuxt-coolify.justserdar.dev](https://nuxt-coolify.justserdar.dev) to explore the documentation.
+3. Add your Coolify credentials to `.env`:
+
+```bash
+NUXT_COOLIFY_INSTANCES_DEFAULT_BASE_URL=<your-coolify-url>
+NUXT_COOLIFY_INSTANCES_DEFAULT_API_TOKEN=<your-coolify-api-token>
+```
+
+## Basic Usage
+
+```vue
+<script setup lang="ts">
+const { data: instances, refresh } = useFetch('/api/_v1/_coolify/instances')
+</script>
+
+<template>
+  <div>
+    <h2>Coolify Instances</h2>
+    <pre>{{ instances }}</pre>
+    <button @click="refresh">Refresh</button>
+  </div>
+</template>
+```
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Generate type stubs
+npm run dev:prepare
+
+# Develop with the playground
+npm run dev
+
+# Build the playground
+npm run dev:build
+
+# Run ESLint
+npm run lint
+
+# Run Vitest
+npm run test
+npm run test:watch
+
+# Release new version
+npm run release
+```
 
 ## Credits
 
 - [nuxt/nuxt](https://github.com/nuxt/nuxt)
 - [coollabsio/coolify](https://github.com/coollabsio/coolify)
 
-## Contribution
+## License
 
-<details>
-  <summary>Local development</summary>
-  
-  ```bash
-  # Install dependencies
-  npm install
-  
-  # Generate type stubs
-  npm run dev:prepare
-  
-  # Develop with the playground
-  npm run dev
-  
-  # Build the playground
-  npm run dev:build
-  
-  # Run ESLint
-  npm run lint
-  
-  # Run Vitest
-  npm run test
-  npm run test:watch
-  
-  # Release new version
-  npm run release
-  ```
-
-</details>
-
+[MIT License](./LICENSE)
 
 <!-- Badges -->
 [npm-version-src]: https://img.shields.io/npm/v/nuxt-coolify/latest.svg?style=flat&colorA=020420&colorB=00DC82

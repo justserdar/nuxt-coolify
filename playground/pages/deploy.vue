@@ -19,7 +19,7 @@
             </button>
           </li>
         </ul>
-        <div class="grid grid-cols-3 gap-3 py-3">
+        <div class="grid grid-cols-6 gap-3 py-3">
           <div
             v-for="(serverGroup, groupIndex) in instances"
             :key="groupIndex"
@@ -31,13 +31,13 @@
                 :key="instanceGroupIndex"
               >
                 <client-only>
-                  <div v-if="cPending">
+                  <div v-if="cStatus === 'pending'">
                     Loading Instances...
                   </div>
                   <div v-else-if="cError">
                     Error: {{ cError?.message }}
                   </div>
-                  <div v-else-if="!cPending">
+                  <div v-else-if="cStatus === 'success'">
                     <ul style="list-style: none;">
                       <li>
                         Total Instances: {{ instances?.length }}
@@ -93,7 +93,7 @@
                               <div class="col-span-1 p-6 border rounded">
                                 <p
                                   class="flex text-md"
-                                  @click="navigateTo(`/hub/s/${instance.uuid}`)"
+                                  
                                 >
                                   <span class="font-bold text-xs mr-2">{{ instance.name }}</span>
                                 </p>
@@ -116,6 +116,10 @@
                                 </div>
                               </div>
                             </template>
+
+                            <button @click.prevent="deployAction(instance)">
+                              Deploy
+                            </button>
                           </template>
                         </div>
                       </div>
@@ -131,81 +135,26 @@
         No authorized instances found for this user
       </div>
     </div>
-
-    <div>
-      <h2>Hetzner Servers</h2>
-      <div v-if="hStatus === 'pending'">
-        Loading Servers...
-      </div>
-      <div v-else-if="hError">
-        Error: {{ hError.message }}
-      </div>
-      <div v-else>
-        <ul style="list-style: none;">
-          <li>
-            Total Servers: {{ serverList.servers.length }}
-          </li>
-          <li>
-            <button @click.prevent="refreshServerList()">
-              Refresh Servers
-            </button>
-          </li>
-        </ul>
-        <div v-if="serverList && serverList.servers.length > 0">
-          <template
-            v-for="server in serverList.servers"
-            :key="server.id"
-          >
-            <p>{{ server.name }}</p>
-            <table :ref="`${server.id}-server-table`">
-              <thead>
-                <tr>
-                  <th scope="head">
-                    Name
-                  </th>
-                  <th scope="head">
-                    IP
-                  </th>
-                  <th scope="head">
-                    OS
-                  </th>
-                  <th scope="head">
-                    Location
-                  </th>
-                  <th scope="head">
-                    Status
-                  </th>
-                  <th scope="head">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{{ server.name }}</td>
-                  <td>{{ server.public_net.ipv4.ip }}</td>
-                  <td>{{ server.image.name }}</td>
-                  <td>{{ server.datacenter.location.name }}</td>
-                  <td>{{ server.status }}</td>
-                  <td>
-                    <select>
-                      <option>Reboot</option>
-                      <option>Power Off</option>
-                      <option>Power On</option>
-                      <option>Request Console</option>
-                    </select>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </template>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import type { Instance } from 'nuxt-coolify'
+
 const { data: instances, status: cStatus, error: cError, refresh: refreshInstanceList } = useFetch('/api/_v1/_coolify/instances')
-const { data: serverList, status: hStatus, error: hError, refresh: refreshServerList } = useFetch('/api/_v1/_hetzner/servers')
+
+async function deployAction(instance: Instance) {
+  try {
+    const response = await $fetch('/api/_v1/_coolify/applications/private-github-app/create', {
+      method: 'POST',
+      body: {
+        instance,
+      },
+    })
+    console.log('response', response)
+  }
+  catch (error) {
+    console.error(error)
+  }
+}
 </script>

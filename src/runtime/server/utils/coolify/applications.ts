@@ -1,4 +1,5 @@
 import type {
+  CoolifyPrivateGitHubAppBody,
   Instance,
 } from 'nuxt-coolify'
 
@@ -16,6 +17,12 @@ export function useCoolifyApplications(coolifyInstance: Instance) {
   // function create (Docker Compose)
 
   return {
+    create:
+    <T>(body, instance?: Instance, type: 'private-github-app' | 'dockerfile' | 'docker-image' = 'private-github-app') => useFetchCoolify<T>(`/applications/${type}`, {
+      coolifyInstance: instance || coolifyInstance,
+      method: 'POST',
+      body,
+    }),
     // list,
     // create,
     // get,
