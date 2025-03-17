@@ -14,10 +14,10 @@ export default defineAppConfig({
     },
   },
   seo: {
-    siteName: 'Nuxt WebSocket - Docs',
+    siteName: 'Nuxt Coolify Module - Docs',
   },
   header: {
-    title: 'Nuxt Coolify',
+    title: 'Nuxt Coolify Module',
     to: '/',
     search: true,
     colorMode: true,
