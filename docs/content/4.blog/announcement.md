@@ -27,7 +27,7 @@ Click here to read the [March 2025 update](./march-2k25-update.md)
 
 ## October 2024 update
 
-Click here to read the [October update](./october-2k25update.md)
+Click here to read the [October update](./october-2k24-update.md)
 
 
 ## Join the Coolify Community
