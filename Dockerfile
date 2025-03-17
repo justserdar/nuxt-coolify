@@ -34,7 +34,7 @@ ENV NODE_ENV=${NODE_ENV}
 USER node
 EXPOSE 3000
 HEALTHCHECK  --retries=10 --start-period=5s \
-  CMD wget --no-verbose --spider http://0.0.0.0:3000/ || exit 1
+  CMD wget --no-verbose --spider http://0.0.0.0:80/ || exit 1
 
 COPY --link --from=builder /app/docs/.output/  ./
 
