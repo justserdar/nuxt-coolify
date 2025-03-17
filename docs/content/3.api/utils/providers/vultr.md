@@ -1,14 +1,12 @@
 ---
 icon: simple-icons:sqlite
+title: Vultr
+description: Leverage the Vultr API to create, control and manage all your Vultr products over API.
 ---
 
-# Vultr API
+## Vultr API Token Guide
 
-> Leverage the Vultr API to create, control and manage all your Vultr products over API.
-
-<!-- :read-more{to=""} -->
-
-[Generating an API token](https://docs.vultr.com/best-practices-for-designing-a-modern-rest-api)
+[Generating an Vultr API token](https://docs.vultr.com/best-practices-for-designing-a-modern-rest-api)
 
 ## Usage
 

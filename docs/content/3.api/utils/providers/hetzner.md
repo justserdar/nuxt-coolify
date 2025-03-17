@@ -1,14 +1,12 @@
 ---
 icon: simple-icons:sqlite
+title: Hetzner
+description: Leverage the Hetzner API to create, control and manage all your Hetzner products over API.
 ---
 
-# Hetzner API
+## Hetzner API Token Guide
 
-> Leverage the Hetzner API to create, control and manage all your Hetzner products over API.
-
-<!-- :read-more{to=""} -->
-
-[Generating an API token](https://docs.hetzner.com/cloud/api/getting-started/generating-api-token)
+[Generating an Hetzner API token](https://docs.hetzner.com/cloud/api/getting-started/generating-api-token)
 
 ## Usage
 

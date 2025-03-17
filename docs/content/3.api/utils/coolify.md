@@ -1,14 +1,13 @@
 ---
 icon: simple-icons:sqlite
+title: Coolify API
+description: Leverage the Coolify API to create, control and manage all your Coolify products over API.
 ---
 
-# Coolify API
+## Coolify API Token Guide
 
-> Leverage the Coolify API to create, control and manage all your Coolify products over API.
+> [Generating an Coolify API token](https://coolify.io/docs/api-reference/authorization)
 
-<!-- :read-more{to=""} -->
-
-[Generating an API token](https://coolify.io/docs/api-reference/authorization)
 
 ## Usage
 
