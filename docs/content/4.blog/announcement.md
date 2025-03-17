@@ -21,9 +21,13 @@ This module helps as a alternative to self-hosting platforms as Vercel and Cloud
 Stay Tuned!
 
 
+## March 2025 update
+
+Click here to read the [March 2025 update](./march-2k25-update.md)
+
 ## October 2024 update
 
-Click here to read the [October update](./october-update.md)
+Click here to read the [October update](./october-2k25update.md)
 
 
 ## Join the Coolify Community
