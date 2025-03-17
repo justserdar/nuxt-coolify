@@ -1,6 +1,7 @@
 ---
 sidebar: false
 title: March 2025 Update
+description: With the major update v0.1.0, we made some design changes and changed the docs to Nuxt UI Pro Docs that will benefit the module in the long term.
 ---
 
 ## Migration from Vitepress to Nuxt UI Pro Docs
