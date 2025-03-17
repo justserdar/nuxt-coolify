@@ -1,8 +1,7 @@
 ---
 sidebar: false
+title: March 2025 Update
 ---
-
-# March 2025 Update
 
 ## Migration from Vitepress to Nuxt UI Pro Docs
 
