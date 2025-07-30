@@ -56,13 +56,10 @@ export default defineNuxtModule<ModuleOptions>({
 
     nuxt.options.alias['#coolify'] = runtimeDir
 
-    const moduleOptions = nuxt.options.runtimeConfig.coolify = defu<
-      RuntimeConfig['coolify'],
-      ModuleOptions[]
-    >(
+    const moduleOptions: ModuleOptions = nuxt.options.runtimeConfig.coolify = defu(
       nuxt.options.runtimeConfig.coolify,
       options,
-    )
+    ) as ModuleOptions
 
     if (moduleOptions.instances['default'].baseURL === 'missing') {
       consola.warn('Please provide the base URL for your Coolify API. Ex: https://api.coolify.io/api/v1')

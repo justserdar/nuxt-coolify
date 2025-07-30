@@ -2,13 +2,13 @@
   <div>
     <div>
       <h2>Coolify Instances</h2>
-      <div v-if="pending === true">
+      <div v-if="pending">
         Loading Instances...
       </div>
       <div v-else-if="cError">
         Error: {{ cError?.message }}
       </div>
-      <div v-else-if="pending === false">
+      <div v-else-if="!pending">
         <ul style="list-style: none;">
           <li>
             Total Instances:: {{ instances?.length }}
@@ -31,19 +31,19 @@
                 :key="instanceGroupIndex"
               >
                 <client-only>
-                  <div v-if="pending === true">
+                  <div v-if="pending">
                     Loading Instances...
                   </div>
                   <div v-else-if="cError">
-                    Error: {{ cError?.message }}
+                    Error: {{ cError }}
                   </div>
-                  <div v-else-if="pending === false">
+                  <div v-else-if="!pending">
                     <ul style="list-style: none;">
                       <li>
                         Total Instances: {{ instances?.length }}
                       </li>
                       <li>
-                        <button @click.prevent="refreshInstanceList">
+                        <button @click.prevent="() => refreshInstanceList()">
                           Refresh Servers
                         </button>
                       </li>
