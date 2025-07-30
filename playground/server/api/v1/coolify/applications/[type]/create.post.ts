@@ -1,5 +1,3 @@
-import type { Instance } from 'nuxt-coolify'
-
 export default defineEventHandler(async (event) => {
   const type = getRouterParam(event, 'type')
   const body = await readBody(event)
@@ -28,10 +26,5 @@ export default defineEventHandler(async (event) => {
   })
 
   // check auth permissions
-  return useCoolifyApplications('default').create({
-    body: payload,
-    instance: body.instance,
-    type,
-  })
-  return { response: body }
+  return useCoolifyApplications('default').create(payload, body.instance, type)
 })

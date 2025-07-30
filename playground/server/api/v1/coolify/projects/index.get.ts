@@ -1,5 +1,4 @@
-export default defineEventHandler(async (_event) => {
-    // check auth permissions
-    return useCoolifyProjects('default').list()
-  })
-  
+export default defineEventHandler(async () => {
+  // check auth permissions
+  return useCoolifyProjects('default').list()
+})

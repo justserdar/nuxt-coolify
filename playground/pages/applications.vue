@@ -1,18 +1,28 @@
 <template>
-  <div> 
+  <div>
     <h2>Applications</h2>
     <div v-if="pending">
       Loading Applications...
     </div>
-    <div v-else-if="cError">
-      Error: {{ cError?.message }}
+    <div v-else-if="error">
+      Error: {{ error }}
     </div>
     <div v-else>
       <ul style="list-style: none; padding: 0;">
         <li style="margin-bottom: 1rem; font-weight: bold;">
           Total Applications: {{ applications?.length || 0 }}
         </li>
-        <li v-for="application in applications" :key="application.id" style="border: 1px solid #e5e7eb; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; background: #f9fafb;">
+        <li
+          v-for="application in applications"
+          :key="application.id"
+          :style="{
+            border: '1px solid #e5e7eb',
+            borderRadius: '8px',
+            padding: '1rem',
+            marginBottom: '1rem',
+            background: '#f9fafb',
+          }"
+        >
           <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; font-size: 0.875rem;">
             <div><strong>Name:</strong> {{ application.name || 'N/A' }}</div>
             <div><strong>Status:</strong> <span :style="{ color: application.status === 'running:healthy' ? '#059669' : '#dc2626' }">{{ application.status || 'N/A' }}</span></div>
@@ -66,13 +76,14 @@
 </template>
 
 <script setup lang="ts">
-const { data: applications, pending, error: cError, refresh: refreshApplicationList } = useFetch('/api/v1/coolify/applications')
+const { data: applications, pending, error } = useFetch('/api/v1/coolify/applications')
 
 const formatDate = (dateString: string | null | undefined) => {
   if (!dateString) return 'N/A'
   try {
     return new Date(dateString).toLocaleDateString()
-  } catch {
+  }
+  catch {
     return 'Invalid Date'
   }
 }

@@ -1,6 +1,4 @@
-import type { Application } from 'nuxt-coolify'
-
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async () => {
   // check auth permissions
   return useCoolifyApplications('default').list()
 })
