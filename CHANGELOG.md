@@ -1,6 +1,62 @@
 # Changelog
 
 
+## v0.1.1
+
+[compare changes](https://undefined/undefined/compare/v0.1.0...v0.1.1)
+
+### 🚀 Enhancements
+
+- Removed openapi mentions (cf3c694)
+- Updated docs to Nuxt Ui Pro docs v3 (c1b0972)
+- Umami (2d517a0)
+- Sandro's Dockerfile (a022b81)
+- Reintroduced missing img of Sandro (55d70e5)
+- New update post (c5d5238)
+- Content update (8f74348)
+- Blog updates (45ae119)
+- Updated version, extended coolify helpers, expanded playground and updated docs (a91899c)
+
+### 🩹 Fixes
+
+- Path routing to coolify and provider page (56e9d2d)
+- Filepath for sandro image (cce592f)
+- Typo in blog content path (30a95e1)
+
+### 🏡 Chore
+
+- Docs update for major version 0.1.0 (156582c)
+- Updated .env vars (844db21)
+- Umami support for docs (a9f7b3f)
+- Umami support for docs" (b7d2cf5)
+- Rename Coolify.md to coolify.md (af305f9)
+- Rename Providers.md to providers.md (297270e)
+- Updated Util Docs (22f2cd3)
+- Updated Coolify Util content (4efddf5)
+- Updated index page, config and pkg jason (f8a1cb1)
+- Updated package manager (f1a0b09)
+- Deleted lockfile (f7da7d2)
+- Updated pkg and regenerated lock (6d4172a)
+- Updated pnpm (4f8b994)
+- Replaced favicon with correct coolify svg (21cf56b)
+- Added nuxt ipx image provider (f66713b)
+- Cleanup and heartlchek local address fix (3b8075d)
+- Deleted lockfile (c051e98)
+- Regenrated lock (c6df5ec)
+- Dockerfile local address changed to localhost (4cfd68d)
+- Adjusted local healthcheck adress to 0.0.0.0 (06350cf)
+- Adjusted port check to 80 (823ad43)
+- Updated content links (9fcb08b)
+- Updated SEO content (5e82064)
+- Seo update for march blog post (6cf3425)
+- Lint errors & removed old deploy example (f7254d4)
+- Clean up (367ee8d)
+
+### ❤️ Contributors
+
+- Serdar Yerdelen ([@justserdar](http://github.com/justserdar))
+- H+ ([@justserdar](http://github.com/justserdar))
+
 ## v0.1.0
 
 [compare changes](https://undefined/undefined/compare/v0.0.11...v0.1.0)
