@@ -64,7 +64,7 @@ NUXT_COOLIFY_INSTANCES_DEFAULT_API_TOKEN=<your-coolify-api-token>
 
 ```vue
 <script setup lang="ts">
-const { data: instances, refresh } = useFetch('/api/_v1/_coolify/instances')
+const { data: instances, refresh } = useFetch('/api/v1/coolify/instances')
 </script>
 
 <template>

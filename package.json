@@ -29,7 +29,6 @@
     "test": "vitest run",
     "test:watch": "vitest watch",
     "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit",
-    "docs": "nuxt dev docs",
     "docs:build": "nuxt build docs",
     "docs:prepare": "nuxt prepare docs",
     "docs:dev": "nuxt dev docs",
@@ -37,18 +36,18 @@
     "docs:start": "node .output/server/index.mjs"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.16.0"
+    "@nuxt/kit": "^3.18.0"
   },
   "devDependencies": {
     "@nuxt/devtools": "^1.7.0",
     "@nuxt/eslint-config": "^0.5.7",
     "@nuxt/module-builder": "^0.8.4",
-    "@nuxt/schema": "^3.16.0",
-    "@nuxt/test-utils": "^3.17.2",
+    "@nuxt/schema": "^3.18.0",
+    "@nuxt/test-utils": "^3.19.2",
     "changelogen": "^0.5.7",
-    "eslint": "^9.22.0",
-    "nuxt": "^3.16.0",
-    "vite": "^5.4.14",
+    "eslint": "^9.32.0",
+    "nuxt": "^3.18.0",
+    "vite": "^5.4.19",
     "vitepress": "^1.6.3",
     "vitest": "^2.1.9",
     "vue-tsc": "2.1.6"

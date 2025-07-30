@@ -13,6 +13,10 @@ description: Leverage the Coolify API to create, control and manage all your Coo
 
 To reach the internal Coolify API endpoints within the module, you can create yor endpoint in Nitro and then simply use our built-in server utils. 
 
+### Security Considerations
+
+To tighten security we recommend you IP whitelist the IP address you are working from in your Coolify Dashboard.
+
 ### Back end Nitro Example
 
 Create a new endpoint and name it e.g. `/server/api/v1/coolify/instances`:
@@ -34,6 +38,7 @@ export default defineEventHandler(async (event) => {
   const name = getRouterParam(event, 'name')
   const { instances } = useRuntimeConfig().coolify
 
+  // Do your query validation
   if (name && !Object.prototype.hasOwnProperty.call(instances, name)) {
     return createError({
       statusCode: 500,
@@ -41,7 +46,7 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  // check auth permissions
+  // Do additional auth check permissions
 
   return useCoolify().instances(name as Instance)
 })
@@ -51,8 +56,7 @@ export default defineEventHandler(async (event) => {
 
 ```vue
 <script setup lang="ts">
-const { data: instances, status: cStatus, error: cError, refresh: refreshInstanceList } = useFetch('/api/_v1/_coolify/instances')
-const { data: serverList, status: hStatus, error: hError, refresh: refreshServerList } = useFetch('/api/_v1/_hetzner/servers')
+const { data: instances, pending, error, refresh } = useFetch('/api/v1/coolify/instances')
 </script>
 ```
 

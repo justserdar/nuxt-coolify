@@ -29,6 +29,9 @@ export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: 'nuxt-coolify',
     configKey: 'coolify',
+    compatibility: {
+      nuxt: '>=3.0.0',
+    },
   },
   defaults: {
     instances: {

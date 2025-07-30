@@ -2,13 +2,13 @@
   <div>
     <div>
       <h2>Coolify Instances</h2>
-      <div v-if="cStatus === 'pending'">
+      <div v-if="pending === true">
         Loading Instances...
       </div>
       <div v-else-if="cError">
         Error: {{ cError?.message }}
       </div>
-      <div v-else-if="cStatus === 'success'">
+      <div v-else-if="pending === false">
         <ul style="list-style: none;">
           <li>
             Total Instances:: {{ instances?.length }}
@@ -31,13 +31,13 @@
                 :key="instanceGroupIndex"
               >
                 <client-only>
-                  <div v-if="cPending">
+                  <div v-if="pending === true">
                     Loading Instances...
                   </div>
                   <div v-else-if="cError">
                     Error: {{ cError?.message }}
                   </div>
-                  <div v-else-if="!cPending">
+                  <div v-else-if="pending === false">
                     <ul style="list-style: none;">
                       <li>
                         Total Instances: {{ instances?.length }}
@@ -132,7 +132,7 @@
       </div>
     </div>
 
-    <div>
+    <!-- <div>
       <h2>Hetzner Servers</h2>
       <div v-if="hStatus === 'pending'">
         Loading Servers...
@@ -201,11 +201,11 @@
           </template>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script setup lang="ts">
-const { data: instances, status: cStatus, error: cError, refresh: refreshInstanceList } = useFetch('/api/_v1/_coolify/instances')
-const { data: serverList, status: hStatus, error: hError, refresh: refreshServerList } = useFetch('/api/_v1/_hetzner/servers')
+const { data: instances, pending, error: cError, refresh: refreshInstanceList } = useFetch('/api/v1/coolify/instances')
+// const { data: serverList, pending: hStatus, error: hError, refresh: refreshServerList } = useFetch('/api/v1/hetzner/servers')
 </script>

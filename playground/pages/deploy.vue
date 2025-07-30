@@ -141,11 +141,11 @@
 <script setup lang="ts">
 import type { Instance } from 'nuxt-coolify'
 
-const { data: instances, status: cStatus, error: cError, refresh: refreshInstanceList } = useFetch('/api/_v1/_coolify/instances')
+const { data: instances, pending: cStatus, error: cError, refresh: refreshInstanceList } = useFetch('/api/v1/coolify/instances')
 
 async function deployAction(instance: Instance) {
   try {
-    const response = await $fetch('/api/_v1/_coolify/applications/private-github-app/create', {
+    const response = await $fetch('/api/v1/coolify/applications/private-github-app/create', {
       method: 'POST',
       body: {
         instance,
