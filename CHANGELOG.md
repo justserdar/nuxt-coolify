@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.1.3
+
+[compare changes](https://undefined/undefined/compare/v0.1.2...v0.1.3)
+
+### 🏡 Chore
+
+- Cleanup and social handle update (2691824)
+
+### ❤️ Contributors
+
+- Serdar Yerdelen ([@justserdar](http://github.com/justserdar))
+
 ## v0.1.2
 
 [compare changes](https://undefined/undefined/compare/v0.1.1...v0.1.2)
