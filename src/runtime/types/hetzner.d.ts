@@ -33,3 +33,41 @@ export type HetznerQueryDatacenters = HetznerQueryLocations
 export interface HetznerQueryServerTypes extends HetznerQuery {
   name?: string | string[]
 }
+
+// Server Payload Types
+export interface HetznerCreateServerBody {
+  name: string
+  server_type: string | number
+  location: string | number
+  image?: string | number
+  ssh_keys?: (string | number)[]
+  start_after_create?: boolean
+  volumes?: (string | number)[]
+  networks?: (string | number)[]
+  user_data?: string
+  labels?: Record<string, string>
+  automount?: boolean
+  firewalls?: {
+    firewall: string | number
+    rules?: string[]
+  }[]
+  placement_group?: string | number
+  public_net?: {
+    enable_ipv4?: boolean
+    enable_ipv6?: boolean
+    ipv4?: {
+      ip?: string
+      dns_ptr?: string
+    }
+    ipv6?: {
+      ip?: string
+      dns_ptr?: string
+    }
+  }
+  load_balancers?: (string | number)[]
+}
+
+export interface HetznerUpdateServerBody {
+  name?: string
+  labels?: Record<string, string>
+}

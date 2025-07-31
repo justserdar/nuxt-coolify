@@ -31,10 +31,10 @@ The `useHetzner()` function provides the following helpers:
 ### Servers
 
 - **`getServers<T>()`** - Get all servers
-- **`createServer<T>(body: Record<string, any>)`** - Create a new server
+- **`createServer<T>(body: HetznerCreateServerBody)`** - Create a new server
 - **`deleteServer<T>(id: number | string)`** - Delete a server by ID
 - **`getServer<T>(id: number | string)`** - Get a specific server by ID
-- **`updateServer<T>(id: number | string, body: Record<string, any>)`** - Update a server
+- **`updateServer<T>(id: number | string, body: HetznerUpdateServerBody)`** - Update a server
 - **`getMetricsServer<T>(id: number | string, query: HetznerQueryMetrics)`** - Get server metrics
 
 ### Actions
@@ -59,6 +59,51 @@ The `useHetzner()` function provides the following helpers:
 
 - **`getServerTypes<T>(query?: HetznerQueryServerTypes)`** - Get all server types
 - **`getServerType<T>(id: number | string)`** - Get a specific server type by ID
+
+## Payload Types
+
+### HetznerCreateServerBody
+```typescript
+interface HetznerCreateServerBody {
+  name: string
+  server_type: string | number
+  location: string | number
+  image?: string | number
+  ssh_keys?: (string | number)[]
+  start_after_create?: boolean
+  volumes?: (string | number)[]
+  networks?: (string | number)[]
+  user_data?: string
+  labels?: Record<string, string>
+  automount?: boolean
+  firewalls?: {
+    firewall: string | number
+    rules?: string[]
+  }[]
+  placement_group?: string | number
+  public_net?: {
+    enable_ipv4?: boolean
+    enable_ipv6?: boolean
+    ipv4?: {
+      ip?: string
+      dns_ptr?: string
+    }
+    ipv6?: {
+      ip?: string
+      dns_ptr?: string
+    }
+  }
+  load_balancers?: (string | number)[]
+}
+```
+
+### HetznerUpdateServerBody
+```typescript
+interface HetznerUpdateServerBody {
+  name?: string
+  labels?: Record<string, string>
+}
+```
 
 ## Query Parameters
 

@@ -39,7 +39,7 @@ export default defineAppConfig({
         'aria-label': 'Nuxt Coolify',
       }, {
         'icon': 'i-simple-icons-x',
-        'to': 'https://x.com/darwebdb',
+        'to': 'https://x.com/JustSerdarDev',
         'target': '_blank',
         'aria-label': 'JustSerdar on X',
       }, {

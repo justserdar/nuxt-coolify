@@ -4,6 +4,8 @@ import type {
   HetznerQueryLocations,
   HetznerQueryDatacenters,
   HetznerQueryServerTypes,
+  HetznerCreateServerBody,
+  HetznerUpdateServerBody,
 } from 'nuxt-coolify'
 
 import {
@@ -17,13 +19,13 @@ export function useHetzner() {
     getServers:
       <T>() => useFetchHetzner<T>('/servers'),
     createServer:
-      <T>(body: Record<string, any>) => useFetchHetzner<T>('/servers', { method: 'POST', body }),
+      <T>(body: HetznerCreateServerBody) => useFetchHetzner<T>('/servers', { method: 'POST', body }),
     deleteServer:
       <T>(id: number | string) => useFetchHetzner<T>(`/servers/${id}`, { method: 'DELETE' }),
     getServer:
       <T>(id: number | string) => useFetchHetzner<T>(`/servers/${id}`),
     updateServer:
-      <T>(id: number | string, body: Record<string, any>) => useFetchHetzner<T>(`/servers/${id}`, { method: 'POST', body }),
+      <T>(id: number | string, body: HetznerUpdateServerBody) => useFetchHetzner<T>(`/servers/${id}`, { method: 'POST', body }),
     getMetricsServer:
       <T>(id: number | string, query: HetznerQueryMetrics) => useFetchHetzner<T>(`/servers/${id}/metrics`, { query }),
 
